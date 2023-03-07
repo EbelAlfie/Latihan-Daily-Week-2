@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="40dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/et_nama"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/etpadding"
+        android:hint="@string/nama_lengkap"
+        android:inputType="text"
+        android:layout_below="@id/tv_title"/>
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/etpadding"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:autofillHints="emailAddress"
+        android:layout_below="@id/et_nama"/>
+
+    <TextView
+        android:id="@+id/tv_jeniskelamin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/jenis_kelamin"
+        android:layout_below="@id/et_email"/>
+
+    <RadioGroup
+        android:id="@+id/rg_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_jeniskelamin"
+        android:orientation="horizontal"
+        android:checkedButton="@+id/radio_btn_laki">
+        <RadioButton
+            android:id="@+id/radio_btn_laki"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_laki"/>
+        <RadioButton
+            android:id="@+id/radio_btn_girl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_perempuan"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rg_gender"
+        android:layout_margin= "@dimen/imgbtn_margin"
+        android:text="--/--/----"
+        android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/iv_calendar"
+        android:layout_width="@dimen/imgbtn_width"
+        android:layout_height="@dimen/imgbtn_height"
+        android:layout_above="@id/et_password"
+        android:layout_below="@id/rg_gender"
+        android:layout_margin="@dimen/imgbtn_margin"
+        android:layout_toEndOf="@id/tv_date_picker"
+        android:background="@color/white"
+        android:src="@drawable/baseline_calendar_month_24" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/etpadding"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        android:autofillHints="password"
+        android:layout_below="@id/tv_date_picker"/>
+
+    <EditText
+        android:id="@+id/et_alamat"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/etpadding"
+        android:hint="@string/hint_alamat"
+        android:inputType="text"
+        android:layout_below="@id/et_password"
+        />
+
+    <TextView
+        android:id="@+id/tv_pendidikan_terakhir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_alamat"
+        android:text="@string/pendidikan_terakhir"/>
+
+    <Spinner
+        android:id="@+id/sp_pendidikan"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/etpadding"
+        android:layout_toEndOf="@id/tv_pendidikan_terakhir"
+        android:layout_below="@id/et_alamat"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sp_pendidikan"
+        android:text="@string/btnsubmit"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Day 5 Latihan 1</string>
+    <string name="title">Halaman Registrasi</string>
+    <string name="btnsubmit">Submit</string>
+    <string name="pendidikan_terakhir">Pendidikan terakhir:</string>
+    <string name="hint_alamat">Alamat</string>
+    <string name="hint_password">Password</string>
+    <string name="radio_perempuan">Perempuan</string>
+    <string name="radio_laki">Laki</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="alamat">Alamat</string>
+    <string name="dob">%d/%d/%d</string>
+    <string name="tanggal_missing">Tanggal belum dipilih</string>
+    <string name="nama_length_error">Nama harus dalam panjang 8 sampai 20</string>
+    <string name="password_length_error">Password harus dalam panjang 8 sampai 15!</string>
+    <string name="email_format_error">Email tidak dalam format yang benar!</string>
+    <string name="nama">Nama</string>
+    <string name="user_notfound">Anda belum terdaftar,\nsilahkan melakukan registrasi terlebih dahulu</string>
+    <string name="registrasi">Registrasi</string>
+    <string name="info_user">Anda sudah terdaftar, Data anda:\nNama: %s\nEmail: %s\nGender: %s\nTanggal lahir: %s\nPendidikan terakhir: %s\nAlamat: %s</string>
+    <string name="ubah_data">Ubah Data</string>
+    <string name="field_kosong">%s tidak boleh kosong!</string>
+    <string name="field_invalid">%s  tidak valid!</string>
+    <string-array name="list_pendidikan">
+        <item>SD</item>
+        <item>SMP</item>
+        <item>SMA</item>
+        <item>SMK</item>
+        <item>D3</item>
+        <item>D4</item>
+        <item>S1</item>
+        <item>S2</item>
+        <item>S3</item>
+    </string-array>
+</resources>
