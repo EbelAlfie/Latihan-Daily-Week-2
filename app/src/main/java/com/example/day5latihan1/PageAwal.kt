@@ -52,6 +52,7 @@ class PageAwal: AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("Data user", dataUser)
             launchIntent(intent)
+            finish()
         }
     }
 
