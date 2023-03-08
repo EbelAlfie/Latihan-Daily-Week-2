@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
@@ -23,22 +25,32 @@ class MainActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private val calendar = Calendar.getInstance()
 
-    private lateinit var userInput: User
-    private var user: User? = null
+    private var userInput: User? = null
 
     private var pendidikanTerakhir: String = "SD"
-    var index = 0
     var choosenDay = 0
     var choosenMonth = 0
     var choosenYear = 0
 
+    val resultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == 200 && result.data != null) {
+            userInput = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                this.intent.getParcelableExtra("Data user", User::class.java)
+            } else this.intent.getParcelableExtra("Data user")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        user = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+
+        userInput = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             this.intent.getParcelableExtra("Data user", User::class.java)
         } else this.intent.getParcelableExtra("Data user")
 
+        //resultLauncher.launch(Intent(this, PageAwal::class.java))
 
         initView()
         initAdapter()
@@ -46,14 +58,15 @@ class MainActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
         spinner.onItemSelectedListener = this
 
         datePickerInit()
-        if (user != null) initUser()
+        if (userInput != null) initUser()
 
         registerBtn.setOnClickListener {
             try {
                 if (!gatherUserData()) return@setOnClickListener
                 val intent = Intent(this, PageAwal::class.java)
                 intent.putExtra("Data User", userInput)
-                startActivity(intent)
+                resultLauncher.launch(intent)
+                finish()
             } catch (e: Exception) {
                 Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
             }
@@ -61,17 +74,17 @@ class MainActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun initUser() {
-        editTextNamaLengkap.setText(user!!.namaText)
-        editTextEmail.setText(user!!.emailText)
-        radioGroup.check(if (user!!.gender) R.id.radio_btn_girl else R.id.radio_btn_laki)
-        textViewDatePicker.text = user!!.getTglLahir()
-        editTextPassword.setText(user!!.passwordText)
-        editTextAlamat.setText(user!!.alamatText)
-        choosenDay = user!!.tanggalLahir
-        choosenMonth = user!!.bulanInt
-        choosenYear = user!!.tahunlahir
+        editTextNamaLengkap.setText(userInput!!.namaText)
+        editTextEmail.setText(userInput!!.emailText)
+        radioGroup.check(if (userInput!!.gender) R.id.radio_btn_girl else R.id.radio_btn_laki)
+        textViewDatePicker.text = userInput!!.getTglLahir()
+        editTextPassword.setText(userInput!!.passwordText)
+        editTextAlamat.setText(userInput!!.alamatText)
+        choosenDay = userInput!!.tanggalLahir
+        choosenMonth = userInput!!.bulanInt
+        choosenYear = userInput!!.tahunlahir
         //spinner
-        spinner.setSelection(user!!.index)
+        spinner.setSelection(resources.getStringArray(R.array.list_pendidikan).indexOf(userInput!!.pendidikanTerakhir))
     }
 
     private fun initView() {
@@ -163,13 +176,12 @@ class MainActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
         userInput = User(namaUser, emailUser, passwordUser, alamatUser,
             radioGroup.checkedRadioButtonId == R.id.radio_btn_girl, pendidikanTerakhir,
-            choosenDay, choosenMonth, choosenYear, index)
+            choosenDay, choosenMonth, choosenYear)
         return true
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         pendidikanTerakhir = p0?.getItemAtPosition(p2).toString()
-        index = p2
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {}
