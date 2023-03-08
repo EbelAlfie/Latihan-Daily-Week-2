@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marginview">10dp</dimen>
+    <dimen name="detail_item_margin">5dp</dimen>
+    <dimen name="layout_item">20dp</dimen>
+    <dimen name="switch_height">48dp</dimen>
+    <dimen name="tv_helper_margin">10dp</dimen>
+    <dimen name="et_notelp_margin">15dp</dimen>
+    <dimen name="marginall">20dp</dimen>
+</resources>

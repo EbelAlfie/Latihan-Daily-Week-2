@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LatihanDay7</string>
+    <string name="toolbar_title">Daftar Alamat</string>
+    <string name="tambah_alamat">+ Tambah Alamat</string>
+    <string name="label">Label</string>
+    <string name="alamat">Alamat</string>
+    <string name="penerima">Penerima</string>
+    <string name="notelp">NoTelp</string>
+    <string name="backmenu">back</string>
+</resources>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/toolbar"
+            app:contentInsetStart="0dp"
+            app:menu="@menu/menu_item"/>
+
+        <TextView
+            android:id="@+id/alamat_lengkap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_detail_alamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_detail_alamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Detail Alamat"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tv_detailalamat_helper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tulis nama jalan/kantor/no.rumah"
+            android:layout_below="@id/til_detail_alamat"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            android:layout_marginBottom="@dimen/tv_helper_margin"/>
+        <TextView
+            android:id="@+id/tv_detailalamat_helperlistener"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0/100"
+            android:layout_below="@id/til_detail_alamat"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            android:layout_marginBottom="@dimen/tv_helper_margin"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_detailalamat_helper"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Label"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tv_label_helper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tulis rumah,kos,kantor dll"
+            android:layout_below="@id/til_label"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            android:layout_marginBottom="@dimen/tv_helper_margin"/>
+        <TextView
+            android:id="@+id/tv_label_helperlistener"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0/30"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            android:layout_below="@id/til_label"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/tv_helper_margin"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_namapenerima"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_label_helper"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_namapenerima"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Penerima"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tv_penerima_helperlistener"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0/64"
+            android:layout_below="@id/til_namapenerima"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            android:layout_marginBottom="@dimen/tv_helper_margin"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_notelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_penerima_helperlistener"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            android:layout_marginBottom="@dimen/et_notelp_margin"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_notelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="No. Handphone"
+                android:inputType="phone"
+                android:drawableEnd="@drawable/baseline_perm_contact_calendar_24"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_alamatutama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jadikan alamat utama"
+            style="@style/textview_item"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            android:layout_below="@id/til_notelp"/>
+
+        <Switch
+            android:id="@+id/switch_alamatutama"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/switch_height"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            android:layout_below="@id/til_notelp"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_simpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simpan"
+            style="@style/btn_simpan_style"
+            android:layout_marginRight="@dimen/marginall"
+            android:layout_marginLeft="@dimen/marginall"
+            android:layout_margin="20dp"
+            android:layout_below="@id/tv_alamatutama"/>
+
+    </RelativeLayout>
+</ScrollView>
