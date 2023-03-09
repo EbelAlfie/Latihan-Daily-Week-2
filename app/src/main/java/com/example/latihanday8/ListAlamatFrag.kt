@@ -26,18 +26,14 @@ class ListAlamatFrag: Fragment(), AdapterAlamat.Utility {
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == 100 && result.data != null) {
-                alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    result.data?.getParcelableExtra("DataAlamat", Alamat::class.java)
-                } else result.data?.getParcelableExtra("DataAlamat")
+                alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) result.data?.getParcelableExtra("DataAlamat", Alamat::class.java)
+                else result.data?.getParcelableExtra("DataAlamat")
+
                 position = result.data!!.getIntExtra("position", listOfAlamat.size + 1)
-                if (position != listOfAlamat.size + 1) {
-                    listOfAlamat[position] = alamat!!
-                    adapterAlamat.notifyItemChanged(position)
-                } else {
-                    listOfAlamat.add(alamat!!)
-                    adapterAlamat.notifyItemChanged(position)
-                    dataKosong()
-                }
+                if (position != listOfAlamat.size + 1) listOfAlamat[position] = alamat!!
+                else listOfAlamat.add(alamat!!)
+                adapterAlamat.notifyItemChanged(position)
+                dataKosong()
             }
         }
 
