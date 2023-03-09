@@ -39,4 +39,5 @@
     <string name="alamat_belum_dipilih">alamat belum dipilih</string>
     <string name="hapus">Hapus</string>
     <string name="ubah">Ubah</string>
+    <string name="data_kosong">Data anda kosong!</string>
 </resources>

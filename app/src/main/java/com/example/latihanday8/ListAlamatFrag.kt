@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ class ListAlamatFrag: Fragment(), AdapterAlamat.Utility {
     private lateinit var recListAlamat: RecyclerView
     lateinit var adapterAlamat: AdapterAlamat
     lateinit var listOfAlamat: MutableList<Alamat>
+    private lateinit var tvNoData: TextView
 
     private var alamat: Alamat? = null
     private var position: Int = 0
@@ -34,6 +36,7 @@ class ListAlamatFrag: Fragment(), AdapterAlamat.Utility {
                 } else {
                     listOfAlamat.add(alamat!!)
                     adapterAlamat.notifyItemChanged(adapterAlamat.itemCount)
+                    dataKosong()
                 }
             }
         }
@@ -48,7 +51,6 @@ class ListAlamatFrag: Fragment(), AdapterAlamat.Utility {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initView(view)
         initInteraction()
     }
@@ -64,6 +66,7 @@ class ListAlamatFrag: Fragment(), AdapterAlamat.Utility {
     private fun initView(view: View) {
         tvTambahAlamat = view.findViewById(R.id.tv_tambahalamat)
         recListAlamat = view.findViewById(R.id.rec_listalamat)
+        tvNoData = view.findViewById(R.id.no_data)
         recListAlamat.layoutManager = LinearLayoutManager(requireContext())
 
         listOfAlamat = mutableListOf()
@@ -95,5 +98,10 @@ class ListAlamatFrag: Fragment(), AdapterAlamat.Utility {
         listOfAlamat.removeAt(position)
         adapterAlamat.notifyItemRemoved(position)
         adapterAlamat.notifyItemRangeChanged(position, listOfAlamat.size)
+        dataKosong()
+    }
+
+    private fun dataKosong() {
+        tvNoData.visibility = if (listOfAlamat.isEmpty()) View.VISIBLE else View.GONE
     }
 }
