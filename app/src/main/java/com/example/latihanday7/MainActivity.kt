@@ -26,7 +26,7 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
                 } else result.data?.getParcelableExtra("DataAlamat")
                 position = result.data!!.getIntExtra("position", -1)
                 if (position != -1) listOfAlamat[position] = alamat!! else listOfAlamat.add(alamat!!)
-                adapterAlamat.notifyItemChanged(adapterAlamat.itemCount - 1)
+                adapterAlamat.notifyItemChanged(adapterAlamat.itemCount)
             }
         }
 
@@ -76,5 +76,6 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     override fun onDeleteItemListener(position: Int) {
         listOfAlamat.removeAt(position)
         adapterAlamat.notifyItemRemoved(position)
+        adapterAlamat.notifyItemRangeChanged(position, listOfAlamat.size)
     }
 }
