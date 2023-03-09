@@ -79,7 +79,6 @@ class ListAlamatFrag: Fragment(), AdapterAlamat.Utility {
 
         adapterAlamat = AdapterAlamat(listOfAlamat, this)
 
-        adapterAlamat.listenerUtility = this
         recListAlamat.adapter = adapterAlamat
     }
 
