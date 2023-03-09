@@ -16,7 +16,7 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     lateinit var listOfAlamat: MutableList<Alamat>
 
     private var alamat: Alamat? = null
-    private var position: Int = -1
+    private var position: Int = 0
 
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -24,14 +24,13 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
                 alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     result.data?.getParcelableExtra("DataAlamat", Alamat::class.java)
                 } else result.data?.getParcelableExtra("DataAlamat")
-
                 position = result.data!!.getIntExtra("position", listOfAlamat.size + 1)
                 if (position != listOfAlamat.size + 1) {
                     listOfAlamat[position] = alamat!!
-                    adapterAlamat.notifyItemChanged(adapterAlamat.itemCount)
+                    adapterAlamat.notifyItemChanged(position)
                 } else {
                     listOfAlamat.add(alamat!!)
-                    adapterAlamat.notifyItemChanged(position)
+                    adapterAlamat.notifyItemChanged(adapterAlamat.itemCount)
                 }
             }
         }
@@ -46,6 +45,7 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     private fun initInteraction() {
         tvTambahAlamat.setOnClickListener {
             val intent = Intent(this, DetailAlamat::class.java)
+            intent.putExtra("position", listOfAlamat.size + 1)
             startForResult.launch(intent)
         }
     }

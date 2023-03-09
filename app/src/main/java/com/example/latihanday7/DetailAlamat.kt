@@ -31,10 +31,10 @@ class DetailAlamat: AppCompatActivity() {
         setContentView(R.layout.detail_alamat)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             alamat = this.intent.getParcelableExtra("DataAlamat", Alamat::class.java)
-            position = this.intent.getIntExtra("position", -1)
+            position = this.intent.getIntExtra("position", 0)
         }else {
             alamat = this.intent.getParcelableExtra("DataAlamat")
-            position = this.intent.getIntExtra("position", -1)
+            position = this.intent.getIntExtra("position", 0)
         }
 
         initView()
