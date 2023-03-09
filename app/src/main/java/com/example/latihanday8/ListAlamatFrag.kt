@@ -35,7 +35,7 @@ class ListAlamatFrag: Fragment(), AdapterAlamat.Utility {
                     adapterAlamat.notifyItemChanged(position)
                 } else {
                     listOfAlamat.add(alamat!!)
-                    adapterAlamat.notifyItemChanged(adapterAlamat.itemCount)
+                    adapterAlamat.notifyItemChanged(position)
                     dataKosong()
                 }
             }

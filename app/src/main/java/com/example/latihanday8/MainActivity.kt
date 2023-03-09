@@ -23,8 +23,6 @@ class MainActivity(): AppCompatActivity() {
     }
 
     private fun setTab() {
-        tabLayout.addTab(tabLayout.newTab().setText("Form Login"))
-        tabLayout.addTab(tabLayout.newTab().setText("List Alamat"))
         setFragment()
     }
 
