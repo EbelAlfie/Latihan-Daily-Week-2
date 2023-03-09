@@ -8,4 +8,15 @@
     <string name="notelp">NoTelp</string>
     <string name="backmenu">back</string>
     <string name="short_telp">Nomor telepon terlalu pendek</string>
+    <string name="kota">Kota</string>
+    <string name="detail_alamat">Detail Alamat</string>
+    <string name="tulis_nama_jalan_kantor_no_rumah">Tulis nama jalan/kantor/no.rumah</string>
+    <string name="_0_100">0/100</string>
+    <string name="tulis_rumah_kos_kantor_dll">Tulis rumah,kos,kantor dll</string>
+    <string name="_0_30">0/30</string>
+    <string name="_0_64">0/64</string>
+    <string name="no_handphone">No. Handphone</string>
+    <string name="jadikan_alamat_utama">Jadikan alamat utama</string>
+    <string name="simpan">Simpan</string>
+    <string name="nama_penerima">Nama Penerima</string>
 </resources>

@@ -36,14 +36,14 @@
                 android:id="@+id/et_detail_alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Detail Alamat"
+                android:hint="@string/detail_alamat"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/tv_detailalamat_helper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tulis nama jalan/kantor/no.rumah"
+            android:text="@string/tulis_nama_jalan_kantor_no_rumah"
             android:layout_below="@id/til_detail_alamat"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
@@ -52,7 +52,7 @@
             android:id="@+id/tv_detailalamat_helperlistener"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0/100"
+            android:text="@string/_0_100"
             android:layout_below="@id/til_detail_alamat"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="@dimen/marginall"
@@ -72,14 +72,14 @@
                 android:id="@+id/et_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Label"
+                android:hint="@string/label"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/tv_label_helper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tulis rumah,kos,kantor dll"
+            android:text="@string/tulis_rumah_kos_kantor_dll"
             android:layout_below="@id/til_label"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
@@ -88,7 +88,7 @@
             android:id="@+id/tv_label_helperlistener"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0/30"
+            android:text="@string/_0_30"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
             android:layout_below="@id/til_label"
@@ -108,14 +108,14 @@
                 android:id="@+id/et_namapenerima"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nama Penerima"
+                android:hint="@string/nama_penerima"
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/tv_penerima_helperlistener"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0/64"
+            android:text="@string/_0_64"
             android:layout_below="@id/til_namapenerima"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="@dimen/marginall"
@@ -136,7 +136,7 @@
                 android:id="@+id/et_notelp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="No. Handphone"
+                android:hint="@string/no_handphone"
                 android:inputType="phone"
                 android:drawableEnd="@drawable/baseline_perm_contact_calendar_24"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -145,7 +145,7 @@
             android:id="@+id/tv_alamatutama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jadikan alamat utama"
+            android:text="@string/jadikan_alamat_utama"
             style="@style/textview_item"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
@@ -153,7 +153,7 @@
 
         <Switch
             android:id="@+id/switch_alamatutama"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/switch_height"
             android:layout_height="@dimen/switch_height"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="@dimen/marginall"
@@ -165,7 +165,7 @@
             android:id="@+id/btn_simpan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Simpan"
+            android:text="@string/simpan"
             style="@style/btn_simpan_style"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
