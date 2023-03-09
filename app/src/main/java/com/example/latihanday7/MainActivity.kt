@@ -56,8 +56,8 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
         recListAlamat.layoutManager = LinearLayoutManager(this)
 
         listOfAlamat = mutableListOf()
-        listOfAlamat.add(Alamat("gggg", "gegef", "Aku", "089643728123", true))
-        listOfAlamat.add(Alamat("kwekjowmd", "wefwd", "wefwfe", "089643728123", false))
+        listOfAlamat.add(Alamat("jalan gang dalam no 43", "kos", "Michael", "089643728123", true))
+        listOfAlamat.add(Alamat("jalan jakarta no 10", "gedung satu", "bukan saya", "089643728123", false))
         listOfAlamat.add(Alamat("adasd", "sbdbdsvxxv", "wefwfe", "089643728123", false))
         listOfAlamat.add(Alamat("zvxvzv", "wexvvxfwd", "wefwfe", "089643728123", true))
         listOfAlamat.add(Alamat("wegwe", "xvcvcx", "wefwfe", "089643728123", false))
