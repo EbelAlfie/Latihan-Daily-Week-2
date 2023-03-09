@@ -24,9 +24,15 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
                 alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     result.data?.getParcelableExtra("DataAlamat", Alamat::class.java)
                 } else result.data?.getParcelableExtra("DataAlamat")
-                position = result.data!!.getIntExtra("position", -1)
-                if (position != -1) listOfAlamat[position] = alamat!! else listOfAlamat.add(alamat!!)
-                adapterAlamat.notifyItemChanged(adapterAlamat.itemCount)
+
+                position = result.data!!.getIntExtra("position", listOfAlamat.size + 1)
+                if (position != listOfAlamat.size + 1) {
+                    listOfAlamat[position] = alamat!!
+                    adapterAlamat.notifyItemChanged(adapterAlamat.itemCount)
+                } else {
+                    listOfAlamat.add(alamat!!)
+                    adapterAlamat.notifyItemChanged(position)
+                }
             }
         }
 

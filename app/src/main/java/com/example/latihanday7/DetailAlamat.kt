@@ -74,8 +74,8 @@ class DetailAlamat: AppCompatActivity() {
                 if (data.length > 64) {printError(msg, editText); false} else true
             }
             getString(R.string.notelp) -> {
-                if (data.length < 12) {printError(msg, editText); false} else
-                    if (data.length > 12) {printError("Nomor telepon terlalu pendek", editText); false} else true
+                if (data.length < 12) {printError(getString(R.string.short_telp), editText); false}
+                else if (data.length > 12) {printError(msg, editText); false} else true
             }
             else -> true
         }

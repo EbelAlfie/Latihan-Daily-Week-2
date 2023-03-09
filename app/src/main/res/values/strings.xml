@@ -7,4 +7,5 @@
     <string name="penerima">Penerima</string>
     <string name="notelp">NoTelp</string>
     <string name="backmenu">back</string>
+    <string name="short_telp">Nomor telepon terlalu pendek</string>
 </resources>
