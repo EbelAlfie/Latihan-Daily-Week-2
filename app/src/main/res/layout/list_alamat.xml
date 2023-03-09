@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/parentlayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_tambahalamat"
+        android:text="@string/tambah_alamat"
+        android:layout_alignParentEnd="true"
+        style="@style/textview"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_listalamat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_tambahalamat"/>
+
+</RelativeLayout>

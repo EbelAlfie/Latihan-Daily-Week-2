@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">LatihanDay7</string>
+    <string name="toolbar_title">Daftar Alamat</string>
+    <string name="tambah_alamat">+ Tambah Alamat</string>
+    <string name="label">Label</string>
+    <string name="alamat">Alamat</string>
+    <string name="penerima">Penerima</string>
+    <string name="notelp">NoTelp</string>
+    <string name="backmenu">back</string>
+    <string name="short_telp">Nomor telepon terlalu pendek</string>
+    <string name="kota">Kota</string>
+    <string name="detail_alamat">Detail Alamat</string>
+    <string name="tulis_nama_jalan_kantor_no_rumah">Tulis nama jalan/kantor/no.rumah</string>
+    <string name="_0_100">0/100</string>
+    <string name="tulis_rumah_kos_kantor_dll">Tulis rumah,kos,kantor dll</string>
+    <string name="_0_30">0/30</string>
+    <string name="_0_64">0/64</string>
+    <string name="no_handphone">No. Handphone</string>
+    <string name="jadikan_alamat_utama">Jadikan alamat utama</string>
+    <string name="simpan">Simpan</string>
+    <string name="nama_penerima">Nama Penerima</string>
+
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="username_char">Username harus terdiri dari kombinasi angka dan huruf!</string>
+    <string name="pass_char">Password harus terdiri dari kombinasi angka, huruf, dan simbol!</string>
+    <string name="username_tooshort">Username terlalu pendek!</string>
+    <string name="username_toolong">Username terlalu panjang!</string>
+    <string name="pass_tooshort">Password terlalu pendek!</string>
+    <string name="pass_toolong">Password terlalu panjang!</string>
+    <string name="invalid_user">Username atau password tidak valid!</string>
+    <string name="pass_invalid">Password tidak valid!</string>
+    <string name="login_gagal">Login Gagal:\n %s</string>
+    <string name="login_berhasil">Login Berhasil:\nSelamat datang %s</string>
+    <string name="key_data_user">DataUser</string>
+    <string name="key_position">Position</string>
+</resources>
