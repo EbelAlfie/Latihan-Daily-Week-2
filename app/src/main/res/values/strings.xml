@@ -23,4 +23,8 @@
     <string name="key_data_alamat">DataAlamat</string>
     <string name="invalid_panjang">%s terlalu panjang!</string>
     <string name="blank_str">%s tidak boleh kosong!</string>
+    <string name="data_kosong">Data anda kosong!</string>
+    <string name="hapus">Hapus</string>
+    <string name="ubah">Ubah</string>
+    <string name="no_alamat">alamat belum dipilih</string>
 </resources>

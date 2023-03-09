@@ -3,6 +3,7 @@ package com.example.latihanday7
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     private lateinit var tvTambahAlamat: TextView
     private lateinit var recListAlamat: RecyclerView
+    private lateinit var tvNoData: TextView
     lateinit var adapterAlamat: AdapterAlamat
     lateinit var listOfAlamat: MutableList<Alamat>
 
@@ -31,6 +33,7 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
                 } else {
                     listOfAlamat.add(alamat!!)
                     adapterAlamat.notifyItemChanged(adapterAlamat.itemCount)
+                    dataKosong()
                 }
             }
         }
@@ -53,6 +56,7 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     private fun initView() {
         tvTambahAlamat = findViewById(R.id.tv_tambahalamat)
         recListAlamat = findViewById(R.id.rec_listalamat)
+        tvNoData = findViewById(R.id.no_data)
         recListAlamat.layoutManager = LinearLayoutManager(this)
 
         listOfAlamat = mutableListOf()
@@ -83,5 +87,9 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
         listOfAlamat.removeAt(position)
         adapterAlamat.notifyItemRemoved(position)
         adapterAlamat.notifyItemRangeChanged(position, listOfAlamat.size)
+        dataKosong()
+    }
+    private fun dataKosong() {
+        tvNoData.visibility = if (listOfAlamat.isEmpty()) View.VISIBLE else View.GONE
     }
 }

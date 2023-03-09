@@ -55,14 +55,14 @@
             android:id="@+id/btn_ubah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Ubah"
+            android:text="@string/ubah"
             android:layout_below="@id/border_horizontal"
             style="@style/btn_itemalamat"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_hapus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Hapus"
+            android:text="@string/hapus"
             android:layout_toEndOf="@id/btn_ubah"
             android:layout_below="@id/border_horizontal"
             style="@style/btn_itemalamat"/>
@@ -78,7 +78,7 @@
             android:id="@+id/status_alamat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="alamat belum dipilih"
+            android:text="@string/no_alamat"
             android:textColor="@color/darkyellow"
             android:layout_below="@id/btn_hapus"
             android:background="@color/yellow"/>
