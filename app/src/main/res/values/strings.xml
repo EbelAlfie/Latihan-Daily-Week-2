@@ -19,4 +19,8 @@
     <string name="jadikan_alamat_utama">Jadikan alamat utama</string>
     <string name="simpan">Simpan</string>
     <string name="nama_penerima">Nama Penerima</string>
+    <string name="key_position">position</string>
+    <string name="key_data_alamat">DataAlamat</string>
+    <string name="invalid_panjang">%s terlalu panjang!</string>
+    <string name="blank_str">%s tidak boleh kosong!</string>
 </resources>

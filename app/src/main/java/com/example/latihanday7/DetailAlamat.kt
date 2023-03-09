@@ -30,11 +30,11 @@ class DetailAlamat: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_alamat)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            alamat = this.intent.getParcelableExtra("DataAlamat", Alamat::class.java)
-            position = this.intent.getIntExtra("position", 0)
+            alamat = this.intent.getParcelableExtra(getString(R.string.key_data_alamat), Alamat::class.java)
+            position = this.intent.getIntExtra(getString(R.string.key_position), 0)
         }else {
-            alamat = this.intent.getParcelableExtra("DataAlamat")
-            position = this.intent.getIntExtra("position", 0)
+            alamat = this.intent.getParcelableExtra(getString(R.string.key_data_alamat))
+            position = this.intent.getIntExtra(getString(R.string.key_position), 0)
         }
 
         initView()
@@ -54,15 +54,15 @@ class DetailAlamat: AppCompatActivity() {
         simpanBtn.setOnClickListener {
             if (!gatherData()) return@setOnClickListener
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("DataAlamat", alamat)
-            intent.putExtra("position", position)
+            intent.putExtra(getString(R.string.key_data_alamat), alamat)
+            intent.putExtra(getString(R.string.key_position), position)
             setResult(100, intent)
             finish()
         }
     }
 
     private fun strLength(namaData: String, data: String, editText: EditText): Boolean {
-        val msg = "$namaData terlalu panjang!"
+        val msg = getString(R.string.invalid_panjang, namaData)
         return when(namaData) {
             getString(R.string.label) -> {
                 if (data.length > 30) { printError(msg, editText); false } else true
@@ -83,7 +83,7 @@ class DetailAlamat: AppCompatActivity() {
 
     private fun isEmptyStr(namaData: String, data: String, editText: EditText): Boolean {
         return if (data.isBlank()) {
-            val msg = "$namaData tidak boleh kosong!"
+            val msg = getString(R.string.blank_str,namaData)
             printError(msg, editText)
             true
         }else false

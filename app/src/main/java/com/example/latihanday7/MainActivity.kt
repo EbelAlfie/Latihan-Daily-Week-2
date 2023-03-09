@@ -22,9 +22,9 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == 100 && result.data != null) {
                 alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    result.data?.getParcelableExtra("DataAlamat", Alamat::class.java)
-                } else result.data?.getParcelableExtra("DataAlamat")
-                position = result.data!!.getIntExtra("position", listOfAlamat.size + 1)
+                    result.data?.getParcelableExtra(getString(R.string.key_data_alamat), Alamat::class.java)
+                } else result.data?.getParcelableExtra(getString(R.string.key_data_alamat))
+                position = result.data!!.getIntExtra(getString(R.string.key_position), listOfAlamat.size + 1)
                 if (position != listOfAlamat.size + 1) {
                     listOfAlamat[position] = alamat!!
                     adapterAlamat.notifyItemChanged(position)
@@ -45,7 +45,7 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     private fun initInteraction() {
         tvTambahAlamat.setOnClickListener {
             val intent = Intent(this, DetailAlamat::class.java)
-            intent.putExtra("position", listOfAlamat.size + 1)
+            intent.putExtra(getString(R.string.key_position), listOfAlamat.size + 1)
             startForResult.launch(intent)
         }
     }
