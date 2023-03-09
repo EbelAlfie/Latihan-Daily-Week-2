@@ -16,16 +16,16 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     lateinit var listOfAlamat: MutableList<Alamat>
 
     private var alamat: Alamat? = null
+    private var position: Int = -1
 
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == 100 && result.data != null) {
                 alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     result.data?.getParcelableExtra("DataAlamat", Alamat::class.java)
-                } else {
-                    result.data?.getParcelableExtra("DataAlamat")
-                }
-                listOfAlamat.add(alamat!!)
+                } else result.data?.getParcelableExtra("DataAlamat")
+                position = result.data!!.getIntExtra("position", -1)
+                if (position != -1) listOfAlamat[position] = alamat!! else listOfAlamat.add(alamat!!)
                 adapterAlamat.notifyItemChanged(adapterAlamat.itemCount - 1)
             }
         }
@@ -69,6 +69,7 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     override fun onUbahItemListener(position: Int) {
         val intent = Intent(this, DetailAlamat::class.java)
         intent.putExtra("DataAlamat", listOfAlamat[position])
+        intent.putExtra("position", position)
         startForResult.launch(intent)
     }
 

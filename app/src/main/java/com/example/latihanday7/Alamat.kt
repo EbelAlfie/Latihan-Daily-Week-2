@@ -11,6 +11,6 @@ data class Alamat(var detailAlamat: String,
                   var checked: Boolean): Parcelable
 {
     fun getLabelTelp(): String {
-        return "$label - $nomorHandphone"
+        return "$namaPenerima - $nomorHandphone"
     }
 }

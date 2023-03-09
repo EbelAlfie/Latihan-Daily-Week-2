@@ -4,13 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 import android.widget.TextView
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 
@@ -27,13 +24,18 @@ class DetailAlamat: AppCompatActivity() {
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
 
     private var alamat: Alamat? = null
+    private var position: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_alamat)
-        alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            this.intent.getParcelableExtra("DataAlamat", Alamat::class.java)
-        }else this.intent.getParcelableExtra("DataAlamat")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            alamat = this.intent.getParcelableExtra("DataAlamat", Alamat::class.java)
+            position = this.intent.getIntExtra("position", -1)
+        }else {
+            alamat = this.intent.getParcelableExtra("DataAlamat")
+            position = this.intent.getIntExtra("position", -1)
+        }
 
         initView()
         if (alamat != null) setView()
@@ -53,6 +55,7 @@ class DetailAlamat: AppCompatActivity() {
             if (!gatherData()) return@setOnClickListener
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("DataAlamat", alamat)
+            intent.putExtra("position", position)
             setResult(100, intent)
             finish()
         }
