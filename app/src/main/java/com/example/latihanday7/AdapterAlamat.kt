@@ -9,12 +9,12 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterAlamat(var listOfAlamat: MutableList<Alamat>):
+class AdapterAlamat(var listOfAlamat: MutableList<Alamat>, var listenerUtility: Utility):
     RecyclerView.Adapter<AdapterAlamat.AlamatViewHolder>() {
-    var listenerUtility: Utility? = null
 
     interface Utility {
         fun onUbahItemListener(position: Int)
+        fun onDeleteItemListener(position: Int)
     }
 
     class AlamatViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -45,13 +45,11 @@ class AdapterAlamat(var listOfAlamat: MutableList<Alamat>):
         holder.switchAlamat.isChecked = alamat.checked
 
         holder.btnHapus.setOnClickListener {
-            listOfAlamat.removeAt(position)
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, listOfAlamat.size)
+            listenerUtility.onDeleteItemListener(position)
         }
 
         holder.btnUbah.setOnClickListener {
-            listenerUtility?.onUbahItemListener(position)
+            listenerUtility.onUbahItemListener(position)
         }
     }
 }

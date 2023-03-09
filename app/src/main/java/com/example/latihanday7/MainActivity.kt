@@ -60,8 +60,7 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
         listOfAlamat.add(Alamat("bsdbd", "efwfe", "wefwfe", "089643728123", false))
         listOfAlamat.add(Alamat("sbdbds", "fewfew", "wefwfe", "089643728123", true))
 
-
-        adapterAlamat = AdapterAlamat(listOfAlamat)
+        adapterAlamat = AdapterAlamat(listOfAlamat, this)
 
         adapterAlamat.listenerUtility = this
         recListAlamat.adapter = adapterAlamat
@@ -70,7 +69,11 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     override fun onUbahItemListener(position: Int) {
         val intent = Intent(this, DetailAlamat::class.java)
         intent.putExtra("DataAlamat", listOfAlamat[position])
-        setResult(100, intent)
-        finish()
+        startForResult.launch(intent)
+    }
+
+    override fun onDeleteItemListener(position: Int) {
+        listOfAlamat.removeAt(position)
+        adapterAlamat.notifyItemRemoved(position)
     }
 }
