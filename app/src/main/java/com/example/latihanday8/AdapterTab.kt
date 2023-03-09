@@ -10,6 +10,6 @@ class AdapterTab(activity: AppCompatActivity): FragmentStateAdapter(activity) {
     }
 
     override fun createFragment(position: Int): Fragment {
-        return if (position == 1) LoginFormFrag() else ListAlamatFrag()
+        return if (position == 0) LoginFormFrag() else ListAlamatFrag()
     }
 }

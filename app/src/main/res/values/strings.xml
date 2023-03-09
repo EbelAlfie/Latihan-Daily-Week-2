@@ -36,4 +36,7 @@
     <string name="login_berhasil">Login Berhasil:\nSelamat datang %s</string>
     <string name="key_data_user">DataUser</string>
     <string name="key_position">Position</string>
+    <string name="alamat_belum_dipilih">alamat belum dipilih</string>
+    <string name="hapus">Hapus</string>
+    <string name="ubah">Ubah</string>
 </resources>
