@@ -29,14 +29,10 @@ class DetailAlamat: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_alamat)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            alamat = this.intent.getParcelableExtra(getString(R.string.key_data_alamat), Alamat::class.java)
-            position = this.intent.getIntExtra(getString(R.string.key_position), 0)
-        }else {
-            alamat = this.intent.getParcelableExtra(getString(R.string.key_data_alamat))
-            position = this.intent.getIntExtra(getString(R.string.key_position), 0)
-        }
+        alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) this.intent.getParcelableExtra(getString(R.string.key_data_alamat), Alamat::class.java)
+        else this.intent.getParcelableExtra(getString(R.string.key_data_alamat))
 
+        position = this.intent.getIntExtra(getString(R.string.key_position), -1)
         initView()
         if (alamat != null) setView()
         initInteraction()

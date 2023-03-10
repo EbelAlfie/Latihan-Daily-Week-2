@@ -23,18 +23,17 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == 100 && result.data != null) {
-                alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    result.data?.getParcelableExtra(getString(R.string.key_data_alamat), Alamat::class.java)
-                } else result.data?.getParcelableExtra(getString(R.string.key_data_alamat))
-                position = result.data!!.getIntExtra(getString(R.string.key_position), listOfAlamat.size + 1)
-                if (position != listOfAlamat.size + 1) {
-                    listOfAlamat[position] = alamat!!
-                    adapterAlamat.notifyItemChanged(position)
-                } else {
-                    listOfAlamat.add(alamat!!)
-                    adapterAlamat.notifyItemChanged(adapterAlamat.itemCount)
-                    dataKosong()
+                alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) result.data?.getParcelableExtra(getString(R.string.key_data_alamat), Alamat::class.java)
+                else result.data?.getParcelableExtra(getString(R.string.key_data_alamat))
+
+                position = result.data!!.getIntExtra(getString(R.string.key_position), -1)
+                position = if (position == -1) listOfAlamat.size + 1 else position
+                when {
+                    position != listOfAlamat.size + 1 -> listOfAlamat[position] = alamat!!
+                    else -> listOfAlamat.add(alamat!!)
                 }
+                adapterAlamat.notifyItemChanged(position)
+                dataKosong()
             }
         }
 
@@ -48,7 +47,6 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
     private fun initInteraction() {
         tvTambahAlamat.setOnClickListener {
             val intent = Intent(this, DetailAlamat::class.java)
-            intent.putExtra(getString(R.string.key_position), listOfAlamat.size + 1)
             startForResult.launch(intent)
         }
     }
@@ -60,6 +58,14 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
         recListAlamat.layoutManager = LinearLayoutManager(this)
 
         listOfAlamat = mutableListOf()
+        initList()
+
+        adapterAlamat = AdapterAlamat(listOfAlamat, this)
+
+        recListAlamat.adapter = adapterAlamat
+    }
+
+    private fun initList() {
         listOfAlamat.add(Alamat("jalan gang dalam no 43", "kos", "Michael", "089643728123", true))
         listOfAlamat.add(Alamat("jalan jakarta no 10", "gedung satu", "bukan saya", "089643728123", false))
         listOfAlamat.add(Alamat("adasd", "sbdbdsvxxv", "wefwfe", "089643728123", false))
@@ -70,10 +76,6 @@ class MainActivity: AppCompatActivity(), AdapterAlamat.Utility {
         listOfAlamat.add(Alamat("bsdbd", "efwfe", "wefwfe", "089643728123", false))
         listOfAlamat.add(Alamat("sbdbds", "fewfew", "wefwfe", "089643728123", true))
 
-        adapterAlamat = AdapterAlamat(listOfAlamat, this)
-
-        adapterAlamat.listenerUtility = this
-        recListAlamat.adapter = adapterAlamat
     }
 
     override fun onUbahItemListener(position: Int) {

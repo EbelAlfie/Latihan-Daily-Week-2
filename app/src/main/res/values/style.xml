@@ -3,6 +3,17 @@
     <style name="toolbar" parent="@style/Widget.AppCompat.Toolbar">
         <item name="android:background">@color/red</item>
         <item name="title">@string/toolbar_title</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="all_item_in_detailalamat">
+        <item name="android:layout_marginRight">@dimen/marginall</item>
+        <item name="android:layout_marginLeft">@dimen/marginall</item>
+    </style>
+    <style name="relative_view_container" parent="@style/all_item_in_detailalamat">
+        <item name="android:paddingTop">@dimen/padding_relative_container</item>
+        <item name="android:paddingLeft">@dimen/alamat_lengkap_padding</item>
+        <item name="android:paddingRight">@dimen/alamat_lengkap_padding</item>
     </style>
     <style name="textview">
         <item name="android:layout_width">wrap_content</item>

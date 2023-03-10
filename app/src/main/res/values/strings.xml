@@ -27,4 +27,6 @@
     <string name="hapus">Hapus</string>
     <string name="ubah">Ubah</string>
     <string name="no_alamat">alamat belum dipilih</string>
+    <string name="label_alamat">Alamat Lengkap</string>
+    <string name="pilih_lokasi">Pilih titik Lokasi</string>
 </resources>

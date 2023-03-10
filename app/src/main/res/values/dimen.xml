@@ -7,4 +7,7 @@
     <dimen name="tv_helper_margin">10dp</dimen>
     <dimen name="et_notelp_margin">15dp</dimen>
     <dimen name="marginall">20dp</dimen>
+    <dimen name="status_alamat_padding">5dp</dimen>
+    <dimen name="alamat_lengkap_padding">5dp</dimen>
+    <dimen name="padding_relative_container">30dp</dimen>
 </resources>

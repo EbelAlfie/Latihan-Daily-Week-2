@@ -16,18 +16,59 @@
             app:contentInsetStart="0dp"
             app:menu="@menu/menu_item"/>
 
+        <RelativeLayout
+            android:id="@+id/alamat_lengkap_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_alamat_lengkap"
+            android:layout_below="@id/toolbar"
+            android:layout_centerHorizontal="true"
+            style="@style/relative_view_container"
+            >
+            <TextView
+                android:id="@+id/label_alamatlengkap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_alamat"/>
+            <TextView
+                android:id="@+id/tv_alamat_lengkap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Jalan gang dalam"
+                android:textColor="@color/black"
+                android:paddingBottom="@dimen/padding_relative_container"
+                android:layout_below="@id/label_alamatlengkap"/>
+
+            <View
+                android:id="@+id/border_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@color/gray"
+                android:layout_below="@+id/tv_alamat_lengkap"/>
+            <Button
+                android:id="@+id/btn_pilihlokasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:backgroundTint="@color/lightgray"
+                android:text="@string/pilih_lokasi"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                android:drawableLeft="@drawable/baseline_add_location_24"
+                android:layout_below="@id/border_horizontal"/>
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/alamat_lengkap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/marginall"
-            android:layout_marginLeft="@dimen/marginall"/>
+            style="@style/all_item_in_detailalamat"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_detail_alamat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar"
+            android:layout_below="@+id/alamat_lengkap_view"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -45,8 +86,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tulis_nama_jalan_kantor_no_rumah"
             android:layout_below="@id/til_detail_alamat"
-            android:layout_marginRight="@dimen/marginall"
-            android:layout_marginLeft="@dimen/marginall"
+            style="@style/all_item_in_detailalamat"
             android:layout_marginBottom="@dimen/tv_helper_margin"/>
         <TextView
             android:id="@+id/tv_detailalamat_helperlistener"
@@ -55,8 +95,7 @@
             android:text="@string/_0_100"
             android:layout_below="@id/til_detail_alamat"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/marginall"
-            android:layout_marginLeft="@dimen/marginall"
+            style="@style/all_item_in_detailalamat"
             android:layout_marginBottom="@dimen/tv_helper_margin"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -81,16 +120,14 @@
             android:layout_height="wrap_content"
             android:text="@string/tulis_rumah_kos_kantor_dll"
             android:layout_below="@id/til_label"
-            android:layout_marginRight="@dimen/marginall"
-            android:layout_marginLeft="@dimen/marginall"
+            style="@style/all_item_in_detailalamat"
             android:layout_marginBottom="@dimen/tv_helper_margin"/>
         <TextView
             android:id="@+id/tv_label_helperlistener"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_0_30"
-            android:layout_marginRight="@dimen/marginall"
-            android:layout_marginLeft="@dimen/marginall"
+            style="@style/all_item_in_detailalamat"
             android:layout_below="@id/til_label"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/tv_helper_margin"/>
@@ -118,8 +155,7 @@
             android:text="@string/_0_64"
             android:layout_below="@id/til_namapenerima"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/marginall"
-            android:layout_marginLeft="@dimen/marginall"
+            style="@style/all_item_in_detailalamat"
             android:layout_marginBottom="@dimen/tv_helper_margin"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -156,8 +192,7 @@
             android:layout_width="@dimen/switch_height"
             android:layout_height="@dimen/switch_height"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/marginall"
-            android:layout_marginLeft="@dimen/marginall"
+            style="@style/all_item_in_detailalamat"
             android:layout_below="@id/til_notelp"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 

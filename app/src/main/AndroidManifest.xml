@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailAlamat"/>
+        <activity android:name=".PilihTitikLokasi"/>
     </application>
 
 </manifest>
