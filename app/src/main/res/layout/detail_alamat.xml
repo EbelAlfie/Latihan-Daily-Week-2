@@ -19,7 +19,7 @@
             app:contentInsetStart="0dp" />
 
         <TextView
-            android:id="@+id/alamat_lengkap"
+            android:id="@+id/tv_alamat_lengkap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/marginall"
@@ -42,7 +42,7 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
-            android:id="@+id/tv_detailalamat_helper"
+            android:id="@+id/tv_detail_alamat_helper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tulis_nama_jalan_kantor_no_rumah"
@@ -51,7 +51,7 @@
             android:layout_marginLeft="@dimen/marginall"
             android:layout_marginBottom="@dimen/tv_helper_margin"/>
         <TextView
-            android:id="@+id/tv_detailalamat_helperlistener"
+            android:id="@+id/tv_detail_alamat_helper_listener"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_0_100"
@@ -65,7 +65,7 @@
             android:id="@+id/til_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_detailalamat_helper"
+            android:layout_below="@id/tv_detail_alamat_helper"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -87,7 +87,7 @@
             android:layout_marginLeft="@dimen/marginall"
             android:layout_marginBottom="@dimen/tv_helper_margin"/>
         <TextView
-            android:id="@+id/tv_label_helperlistener"
+            android:id="@+id/tv_label_helper_listener"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_0_30"
@@ -98,7 +98,7 @@
             android:layout_marginBottom="@dimen/tv_helper_margin"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_namapenerima"
+            android:id="@+id/til_nama_penerima"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_label_helper"
@@ -107,35 +107,35 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_namapenerima"
+                android:id="@+id/et_nama_penerima"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nama_penerima"
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
-            android:id="@+id/tv_penerima_helperlistener"
+            android:id="@+id/tv_penerima_helper_listener"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_0_64"
-            android:layout_below="@id/til_namapenerima"
+            android:layout_below="@id/til_nama_penerima"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
             android:layout_marginBottom="@dimen/tv_helper_margin"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_notelp"
+            android:id="@+id/til_no_telp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_penerima_helperlistener"
+            android:layout_below="@+id/tv_penerima_helper_listener"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
             android:layout_marginBottom="@dimen/et_notelp_margin"
             >
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_notelp"
+                android:id="@+id/et_no_telp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/no_handphone"
@@ -144,23 +144,23 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/tv_alamatutama"
+            android:id="@+id/tv_alamat_utama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/jadikan_alamat_utama"
             style="@style/textview_item"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
-            android:layout_below="@id/til_notelp"/>
+            android:layout_below="@id/til_no_telp"/>
 
         <Switch
-            android:id="@+id/switch_alamatutama"
+            android:id="@+id/switch_alamat_utama"
             android:layout_width="@dimen/switch_height"
             android:layout_height="@dimen/switch_height"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
-            android:layout_below="@id/til_notelp"
+            android:layout_below="@id/til_no_telp"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -172,7 +172,7 @@
             android:layout_marginRight="@dimen/marginall"
             android:layout_marginLeft="@dimen/marginall"
             android:layout_margin="20dp"
-            android:layout_below="@id/tv_alamatutama"/>
+            android:layout_below="@id/tv_alamat_utama"/>
 
     </RelativeLayout>
 </ScrollView>

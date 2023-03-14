@@ -2,8 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:tool="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,40 +12,44 @@
         android:padding="@dimen/layout_item">
 
         <TextView
-            android:id="@+id/label"
+            android:id="@+id/tv_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
+            tools:text="Manado"
             style="@style/textview_item" />
 
         <TextView
-            android:id="@+id/label_dan_telp"
+            android:id="@+id/tv_label_dan_telp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
+            tools:text="aku - 089293849283"
             style="@style/textview_item_detail"
-            android:layout_below="@id/label"/>
+            android:layout_below="@id/tv_label"/>
         <TextView
-            android:id="@+id/detail_alamat"
+            android:id="@+id/tv_detail_alamat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/textview_item_detail"
-            android:layout_below="@id/label_dan_telp"/>
+            tools:text="Bandung"
+            android:layout_below="@id/tv_label_dan_telp"/>
         <TextView
-            android:id="@+id/detail_kota"
+            android:id="@+id/tv_detail_kota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/gray"
+            tools:text="jalan Jakarta"
             style="@style/textview_item_detail"
-            android:layout_below="@id/detail_alamat"/>
+            android:layout_below="@id/tv_detail_alamat"/>
 
         <View
             android:id="@+id/border_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_below="@id/detail_kota"
+            android:layout_below="@id/tv_detail_kota"
             android:background="@color/gray"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_ubah"
