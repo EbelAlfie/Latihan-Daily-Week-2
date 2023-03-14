@@ -26,12 +26,13 @@ class ListAlamatFragment: Fragment(), AdapterAlamat.Utility {
 
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            var message = getString(R.string.data_added)
             if (result.resultCode == 100 && result.data != null) {
-                var message = getString(R.string.data_added)
                 alamat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) result.data?.getParcelableExtra("DataAlamat", AlamatModel::class.java)
                 else result.data?.getParcelableExtra("DataAlamat")
 
                 position = result.data!!.getIntExtra("position", listOfAlamat.size + 1)
+
                 if (position != listOfAlamat.size + 1) {
                     listOfAlamat[position] = alamat!!
                     message = getString(R.string.data_changed)
@@ -39,10 +40,10 @@ class ListAlamatFragment: Fragment(), AdapterAlamat.Utility {
                 else listOfAlamat.add(alamat!!)
                 adapterAlamat.notifyItemChanged(position)
                 dataKosong()
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), getString(R.string.data_kosong), Toast.LENGTH_SHORT).show()
+                message = getString(R.string.data_kosong)
             }
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
 
     override fun onCreateView(
