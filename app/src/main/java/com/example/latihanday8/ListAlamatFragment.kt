@@ -38,6 +38,7 @@ class ListAlamatFragment: Fragment(), AdapterAlamat.Utility {
                     message = getString(R.string.data_changed)
                 }
                 else listOfAlamat.add(alamat!!)
+
                 adapterAlamat.notifyItemChanged(position)
                 dataKosong()
             } else {

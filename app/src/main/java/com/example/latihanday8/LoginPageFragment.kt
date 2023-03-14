@@ -11,9 +11,11 @@ import androidx.fragment.app.Fragment
 import com.example.latihanday8.databinding.LoginPageBinding
 
 class LoginPageFragment: Fragment() {
-    private val VALID_LENGTH = 1
-    private val LONG_LENGTH = 2
-    private val SHORT_LENGTH = 0
+    companion object {
+        private const val VALID_LENGTH = 1
+        private const val LONG_LENGTH = 2
+        private const val SHORT_LENGTH = 0
+    }
 
     private lateinit var binding: LoginPageBinding
 

@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.latihanday8.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class MainActivity(): AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val TABS = arrayOf(
