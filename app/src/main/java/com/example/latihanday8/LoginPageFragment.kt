@@ -145,13 +145,7 @@ class LoginPageFragment: Fragment() {
     private fun message(context: Context, msg: String, icon: Int, title: String) {
         val alertDialogBuilder = AlertDialog.Builder(context)
         alertDialogBuilder.apply{
-            setIcon(
-                ResourcesCompat.getDrawable(
-                    context.resources,
-                    icon,
-                    null
-                )
-            )
+            setIcon(ResourcesCompat.getDrawable(context.resources, icon,null))
             setTitle(title)
             setMessage(msg)
             setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.dismiss() }
