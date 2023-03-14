@@ -40,6 +40,8 @@ class ListAlamatFragment: Fragment(), AdapterAlamat.Utility {
                 adapterAlamat.notifyItemChanged(position)
                 dataKosong()
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.data_kosong), Toast.LENGTH_SHORT).show()
             }
         }
 
