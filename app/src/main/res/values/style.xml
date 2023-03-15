@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="subtitle_style">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">@dimen/subtitle_padding</item>
+        <item name="android:textSize">@dimen/subtitle_text_size</item>
+        <item name="android:background">@drawable/border</item>
+    </style>
+</resources>
