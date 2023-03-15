@@ -55,7 +55,6 @@ class MainActivity: AppCompatActivity(), Adapter.ViewInteraction {
             override fun onFailure(call: Call<ProvinsiModel>, t: Throwable) {
                 Log.d("tests", t.message.toString())
             }
-
         })
     }
 
