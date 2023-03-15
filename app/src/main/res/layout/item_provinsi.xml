@@ -10,4 +10,8 @@
         android:layout_height="wrap_content"
         tools:text="Provinsi"
         style="@style/subtitle_style"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_sub_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

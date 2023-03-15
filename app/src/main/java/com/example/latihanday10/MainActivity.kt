@@ -29,17 +29,8 @@ class MainActivity: AppCompatActivity(), Adapter.ViewInteraction {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initView()
-
         getRespon(0, 0)
 
-    }
-
-    private fun initView() {
-        frameProvinsi = binding.fragmentProvinsi
-        frameKota = binding.fragmentKota
-        frameKelurahan = binding.fragmentKelurahan
-        frameKecamatan = binding.fragmentKecamatan
     }
 
     private fun getRespon(type: Int, requiredId: Int) {
@@ -74,10 +65,6 @@ class MainActivity: AppCompatActivity(), Adapter.ViewInteraction {
     }
 
     override fun onClick(position: Int) {
-        val data = daerahList[position]
-        val intent = Intent(this, ChildActivity::class.java)
-        intent.putExtra("provinsi", data)
-        intent.putExtra("mode", 0)
-        startActivity(intent)
+
     }
 }
