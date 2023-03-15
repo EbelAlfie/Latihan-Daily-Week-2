@@ -4,31 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChildActivity">
-    <FrameLayout
-        android:id="@+id/fragment_provinsi"
+    android:orientation="vertical"
+    tools:context=".KecamatanActivity">
+    <TextView
+        android:id="@+id/tv_provinsi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
-    <FrameLayout
-        android:id="@+id/fragment_kota"
+        tools:text="Test"
+        style="@style/subtitle_style"/>
+    <TextView
+        android:id="@+id/tv_kota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
-    <FrameLayout
-        android:id="@+id/fragment_kecamatan"
+        tools:text="Test"
+        style="@style/subtitle_style"/>
+    <TextView
+        android:id="@+id/tv_kecamatan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
-    <FrameLayout
-        android:id="@+id/fragment_kelurahan"
+        tools:text="Test"
+        style="@style/subtitle_style"/>
+    <TextView
+        android:id="@+id/tv_kelurahan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        tools:text="Test"
+        style="@style/subtitle_style"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list_other"
+        android:id="@+id/rv_list_alamat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+        android:layout_height="wrap_content"/>
 </LinearLayout>
