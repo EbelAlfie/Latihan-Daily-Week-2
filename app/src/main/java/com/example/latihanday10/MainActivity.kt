@@ -76,5 +76,8 @@ class MainActivity: AppCompatActivity(), Adapter.ViewInteraction {
     override fun onClick(position: Int) {
         val data = daerahList[position]
         val intent = Intent(this, ChildActivity::class.java)
+        intent.putExtra("provinsi", data)
+        intent.putExtra("mode", 0)
+        startActivity(intent)
     }
 }
