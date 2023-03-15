@@ -2,15 +2,13 @@ package com.example.latihanday10
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihanday10.databinding.ActivityKotaBinding
 import com.example.latihanday10.model.GeneralModel
 import com.example.latihanday10.model.KotaModel
-import com.example.latihanday10.model.ProvinsiModel
 import com.example.latihanday10.retrofit.RetrofitObj
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,7 +28,7 @@ class KotaActivity : AppCompatActivity(), Adapter.ViewInteraction {
         else this.intent.getParcelableExtra("provinsi")
 
         if (data != null) {
-            binding.tvProvinsi.text = data!!.nama
+            binding.tvProvinsi.text = getString(R.string.provinsi_adalah, data!!.nama)
             getRespon(data!!.id)
         }
     }

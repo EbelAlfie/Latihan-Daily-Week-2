@@ -32,8 +32,8 @@ class KecamatanActivity : AppCompatActivity(), Adapter.ViewInteraction {
         provinsi = this.intent.getStringExtra("provinsi")
 
         if (data != null) {
-            binding.tvProvinsi.text = provinsi
-            binding.tvKota.text = data!!.nama
+            binding.tvProvinsi.text = getString(R.string.provinsi_adalah, provinsi)
+            binding.tvKota.text = getString(R.string.kota_adalah, data!!.nama)
             getRespon(data!!.id)
         }
     }

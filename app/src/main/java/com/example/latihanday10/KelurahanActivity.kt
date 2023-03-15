@@ -34,9 +34,9 @@ class KelurahanActivity : AppCompatActivity(), Adapter.ViewInteraction {
         kota = this.intent.getStringExtra("kota")
 
         if (data != null) {
-            binding.tvProvinsi.text = provinsi
-            binding.tvKota.text = kota
-            binding.tvKecamatan.text = data!!.nama
+            binding.tvProvinsi.text = getString(R.string.provinsi_adalah, provinsi)
+            binding.tvKota.text = getString(R.string.kota_adalah, kota)
+            binding.tvKecamatan.text = getString(R.string.kecamatan_adalah, data!!.nama)
             getRespon(data!!.id)
         }
     }

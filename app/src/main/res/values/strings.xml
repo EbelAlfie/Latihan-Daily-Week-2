@@ -4,4 +4,8 @@
     <string name="kecamatan_title">Kecamatan</string>
     <string name="kelurahan_title">Kelurahan</string>
     <string name="semua_title">Semua</string>
+    <string name="provinsi_adalah">Provinsi: %s</string>
+    <string name="kota_adalah">Kota: %s</string>
+    <string name="kecamatan_adalah">Kecamatan: %s</string>
+    <string name="kelurahan_adalah">Kelurahan: %s</string>
 </resources>

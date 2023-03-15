@@ -26,10 +26,10 @@ class AlamatActivity : AppCompatActivity() {
         camat = this.intent.getStringExtra("camat")
 
         if (data != null) {
-            binding.tvProvinsi.text = provinsi
-            binding.tvKota.text = kota
-            binding.tvKecamatan.text = camat
-            binding.tvKelurahan.text = data!!.nama
+            binding.tvProvinsi.text = getString(R.string.provinsi_adalah, provinsi)
+            binding.tvKota.text = getString(R.string.kota_adalah, kota)
+            binding.tvKecamatan.text = getString(R.string.kecamatan_adalah, camat)
+            binding.tvKelurahan.text = getString(R.string.kelurahan_adalah, data!!.nama)
         }
     }
 }
