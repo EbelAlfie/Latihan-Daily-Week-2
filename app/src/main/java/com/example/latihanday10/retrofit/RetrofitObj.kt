@@ -1,9 +1,7 @@
 package com.example.latihanday10.retrofit
 
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.logging.Level
 
 object RetrofitObj {
 

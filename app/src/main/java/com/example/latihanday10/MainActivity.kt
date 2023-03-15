@@ -3,12 +3,11 @@ package com.example.latihanday10
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihanday10.databinding.ActivityMainBinding
-import com.example.latihanday10.model.ProvinsiModel
 import com.example.latihanday10.model.GeneralModel
+import com.example.latihanday10.model.ProvinsiModel
 import com.example.latihanday10.retrofit.RetrofitObj
 import retrofit2.Call
 import retrofit2.Callback

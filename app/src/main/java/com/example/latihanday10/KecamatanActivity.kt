@@ -2,16 +2,13 @@ package com.example.latihanday10
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihanday10.databinding.ActivityKecamatanBinding
-import com.example.latihanday10.databinding.ActivityKotaBinding
 import com.example.latihanday10.model.GeneralModel
 import com.example.latihanday10.model.KecamatanModel
-import com.example.latihanday10.model.KotaModel
 import com.example.latihanday10.retrofit.RetrofitObj
 import retrofit2.Call
 import retrofit2.Callback

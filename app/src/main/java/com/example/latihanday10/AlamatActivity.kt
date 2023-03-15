@@ -1,19 +1,10 @@
 package com.example.latihanday10
 
-import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.latihanday10.databinding.ActivityAlamatBinding
-import com.example.latihanday10.databinding.ActivityKelurahanBinding
 import com.example.latihanday10.model.GeneralModel
-import com.example.latihanday10.model.KelurahanModel
-import com.example.latihanday10.retrofit.RetrofitObj
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class AlamatActivity : AppCompatActivity() {
     private var data: GeneralModel? = null
