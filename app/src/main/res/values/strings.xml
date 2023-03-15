@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LatihanDay10</string>
+    <string name="provinsi_label">Provinsi</string>
+    <string name="kecamatan_title">Kecamatan</string>
+    <string name="kelurahan_title">Kelurahan</string>
+    <string name="semua_title">Semua</string>
 </resources>

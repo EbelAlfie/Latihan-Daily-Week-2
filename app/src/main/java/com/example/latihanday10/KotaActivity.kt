@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihanday10.databinding.ActivityKotaBinding
 import com.example.latihanday10.model.GeneralModel
 import com.example.latihanday10.model.KotaModel
+import com.example.latihanday10.model.ProvinsiModel
 import com.example.latihanday10.retrofit.RetrofitObj
 import retrofit2.Call
 import retrofit2.Callback
