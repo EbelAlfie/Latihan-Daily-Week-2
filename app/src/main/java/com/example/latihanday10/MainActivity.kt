@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihanday10.databinding.ActivityMainBinding
@@ -19,27 +20,36 @@ class MainActivity: AppCompatActivity(), Adapter.ViewInteraction {
     private lateinit var binding: ActivityMainBinding
     private var daerahList = mutableListOf<GeneralModel>() //MutableList<GeneralModel>? = null //
     private lateinit var daerahAdapter: Adapter
-    private lateinit var frameProvinsi: FrameLayout
-    private lateinit var frameKota: FrameLayout
-    private lateinit var frameKecamatan: FrameLayout
-    private lateinit var frameKelurahan: FrameLayout
+    private lateinit var tvProvinsi: TextView
+    private lateinit var tvKota: TextView
+    private lateinit var tvKecamatan: TextView
+    private lateinit var tvKelurahan: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        getRespon(0, 0)
+        initView()
+
+        getRespon(0, 0, initRecView)
 
     }
 
-    private fun getRespon(type: Int, requiredId: Int) {
+    private fun initView() {
+        tvProvinsi = binding.tvProvinsi
+        tvKota = binding.tvKota
+        tvKecamatan = binding.tvKecamatan
+        tvKelurahan = binding.tvKelurahan
+    }
+
+    private fun getRespon(type: Int, requiredId: Int, func: () -> Unit) {
         val response = getResponseType(type, requiredId)
         response.enqueue(object: Callback<ProvinsiModel> {
             override fun onResponse(call: Call<ProvinsiModel>, response: Response<ProvinsiModel>) {
                 Log.d("DEBUG : ", response.body().toString())
                 daerahList = response.body()!!.list
-                initRecView()
+                func()
             }
 
             override fun onFailure(call: Call<ProvinsiModel>, t: Throwable) {
@@ -58,13 +68,29 @@ class MainActivity: AppCompatActivity(), Adapter.ViewInteraction {
         }
     }
 
-    private fun initRecView() {
+    val initRecView: () -> Unit = {
         binding.rvListProvinsi.layoutManager = LinearLayoutManager(this)
         daerahAdapter = Adapter(daerahList, this)
         binding.rvListProvinsi.adapter = daerahAdapter
     }
 
     override fun onClick(position: Int) {
+        val data = daerahList[position]
+        when {
+            tvProvinsi.visibility == View.GONE -> {setView(data, 0, tvProvinsi)}
+            tvKota.visibility == View.GONE -> {setView(data, 1, tvKota)}
+            tvKecamatan.visibility == View.GONE -> {setView(data, 2, tvKecamatan)}
+            tvKelurahan.visibility == View.GONE -> {setView(data, 3, tvKelurahan)}
+        }
+    }
 
+    val refreshList: () -> Unit = {
+        daerahAdapter.notifyItemChanged(daerahList.size)
+    }
+
+    private fun setView(data: GeneralModel, type: Int, tv: TextView) {
+        tv.visibility = View.VISIBLE
+        tv.text = data.nama
+        getRespon(type, data.id, refreshList)
     }
 }
