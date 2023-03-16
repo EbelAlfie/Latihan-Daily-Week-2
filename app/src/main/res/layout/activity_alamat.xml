@@ -43,7 +43,6 @@
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_below="@id/tv_kelurahan"/>
     <TextView
         android:id="@+id/tv_alamat"

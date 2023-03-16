@@ -1,11 +1,8 @@
 package com.example.latihanday10.repository
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.latihanday10.Utils
 import com.example.latihanday10.model.GatewayModel
-import com.example.latihanday10.model.GeneralModel
 import com.example.latihanday10.model.retrofit.RetrofitObj
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,12 +23,14 @@ class DaerahRepository {
                 daerahList.value = if (response.isSuccessful) {
                     GatewayModel(
                         list = response.body()!!.list,
-                        loading = false
+                        loading = false,
+                        type = type
                     )
                 } else {
                     GatewayModel(
                         list = mutableListOf(),
-                        loading = false
+                        loading = false,
+                        type = type
                     )
                 }
             }
@@ -40,7 +39,8 @@ class DaerahRepository {
                 Log.d("tests", t.message.toString())
                 daerahList.value = GatewayModel(
                     list = mutableListOf(),
-                    loading = false
+                    loading = false,
+                    type = type
                 )
             }
         })

@@ -2,6 +2,7 @@ package com.example.latihanday10.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.latihanday10.R
 import com.example.latihanday10.databinding.ActivityAlamatBinding
+import com.google.gson.Gson
 
 class AlamatActivity: AppCompatActivity(), Adapter.ViewInteraction {
     private lateinit var binding: ActivityAlamatBinding
@@ -31,32 +33,26 @@ class AlamatActivity: AppCompatActivity(), Adapter.ViewInteraction {
 
         initView()
         initViewInteraction()
-        alamatViewModel.setNama(tvProvinsi.text.toString(), tvKota.text.toString(), tvKecamatan.text.toString(), tvKelurahan.text.toString())
-        alamatViewModel.getAlamat()?.observe(this) {
-            tvProvinsi.text = it.namaProvinsi
-            tvKota.text = it.namaKota
-            tvKecamatan.text = it.namaKecamatan
-            tvKelurahan.text = it.namaKelurahan
-        }
+        begin()
     }
 
     private fun begin() {
-        alamatViewModel.setId(0, 0)
         alamatViewModel.getSavedData().observe(this) {
+            Log.d("observer", Gson().toJson(it))
             daerahAdapter.updateData(it.list)
             setLoading(it.loading)
         }
-        alamatViewModel.getAlamat()?.observe(this) {
-            if (it.namaProvinsi != null && it.namaKecamatan != null && it.namaKota != null && it.namaKelurahan != null){
-                setGoBack()
-            }
-        }
+//        alamatViewModel.getAlamat()?.observe(this) {
+//            if (it.namaProvinsi != null && it.namaKecamatan != null && it.namaKota != null && it.namaKelurahan != null){
+//                setGoBack()
+//            }
+//        }
     }
 
     private fun initViewInteraction() {
         btnGoBack.setOnClickListener {
-            hideBtn()
-            begin()
+            //hideBtn()
+            alamatViewModel.setId(0, 0)
         }
     }
 
@@ -93,7 +89,10 @@ class AlamatActivity: AppCompatActivity(), Adapter.ViewInteraction {
     private fun setView(namaDaerah: String, type: Int, requiredId: Int, textView: TextView) {
         textView.visibility = View.VISIBLE
         textView.text = namaDaerah
-        if (type == 4) return
+        if (type == 4) {
+            setGoBack()
+            return
+        }
         alamatViewModel.setId(type, requiredId)
     }
 
