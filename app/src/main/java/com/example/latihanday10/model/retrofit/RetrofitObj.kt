@@ -1,4 +1,4 @@
-package com.example.latihanday10.retrofit
+package com.example.latihanday10.model.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

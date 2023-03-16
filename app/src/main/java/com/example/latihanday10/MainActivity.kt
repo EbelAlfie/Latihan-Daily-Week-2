@@ -4,46 +4,32 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihanday10.databinding.ActivityMainBinding
+import com.example.latihanday10.model.GatewayModel
 import com.example.latihanday10.model.GeneralModel
-import com.example.latihanday10.model.ProvinsiModel
-import com.example.latihanday10.retrofit.RetrofitObj
+import com.example.latihanday10.model.retrofit.RetrofitObj
+import com.example.latihanday10.viewmodel.GlobalViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity: AppCompatActivity(), Adapter.ViewInteraction {
     private lateinit var binding: ActivityMainBinding
-    private var daerahList = mutableListOf<GeneralModel>() //MutableList<GeneralModel>? = null //
     private lateinit var daerahAdapter: Adapter
+    private lateinit var globalViewModel: GlobalViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        getRespon()
-
+        initView()
     }
 
-    private fun getRespon() {
-        val response = RetrofitObj.apiService.getServiceProvinsi()
-        response.enqueue(object: Callback<ProvinsiModel> {
-            override fun onResponse(call: Call<ProvinsiModel>, response: Response<ProvinsiModel>) {
-                Log.d("DEBUG : ", response.body().toString())
-                daerahList = response.body()!!.list
-                initRecView()
-            }
 
-            override fun onFailure(call: Call<ProvinsiModel>, t: Throwable) {
-                Log.d("tests", t.message.toString())
-            }
-
-        })
-    }
-
-    private fun initRecView() {
+    private fun initView() {
+        GlobalViewModel = ViewModel()
         binding.rvListProvinsi.layoutManager = LinearLayoutManager(this)
         daerahAdapter = Adapter(daerahList, this)
         binding.rvListProvinsi.adapter = daerahAdapter

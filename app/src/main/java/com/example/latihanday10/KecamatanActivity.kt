@@ -8,8 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihanday10.databinding.ActivityKecamatanBinding
 import com.example.latihanday10.model.GeneralModel
-import com.example.latihanday10.model.KecamatanModel
-import com.example.latihanday10.retrofit.RetrofitObj
+import com.example.latihanday10.model.retrofit.RetrofitObj
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

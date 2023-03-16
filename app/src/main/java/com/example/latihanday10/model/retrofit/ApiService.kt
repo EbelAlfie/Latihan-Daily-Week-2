@@ -1,4 +1,4 @@
-package com.example.latihanday10.retrofit
+package com.example.latihanday10.model.retrofit
 
 import com.example.latihanday10.model.*
 import retrofit2.Call
