@@ -1,5 +1,6 @@
 package com.example.latihanday10.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,9 +11,19 @@ class Adapter(val daerahList: MutableList<GeneralModel>, val viewInteraction: Vi
     class DaerahViewHolder(val binding: ItemProvinsiBinding): RecyclerView.ViewHolder(binding.root) {}
 
     fun updateData(list: MutableList<GeneralModel>){
+        Log.d("tests", list.toString())
         if (daerahList.isNotEmpty()) daerahList.clear()
         daerahList.addAll(list)
-        notifyItemRangeChanged(0, daerahList.size)
+        notifyDataSetChanged()
+        //notifyItemRangeChanged(0, daerahList.size)
+    }
+
+    fun getString(position: Int): String {
+        return daerahList[position].nama
+    }
+
+    fun getId(position: Int): Int {
+        return daerahList[position].id
     }
 
     interface ViewInteraction {
