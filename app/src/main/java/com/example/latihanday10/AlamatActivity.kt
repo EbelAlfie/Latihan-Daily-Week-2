@@ -24,7 +24,7 @@ class AlamatActivity : AppCompatActivity() {
         dataKecamatan = Utils.getIntentData(this, Utils.KECAMATAN_KEY)
         dataKelurahan = Utils.getIntentData(this, Utils.KELURAHAN_KEY)
 
-        if (dataProvinsi == null && dataKota != null &&
+        if (dataProvinsi == null && dataKota == null &&
             dataKecamatan == null && dataKelurahan == null) {
             hideView(binding.tvProvinsi)
             hideView(binding.tvKota)
