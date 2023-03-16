@@ -9,6 +9,12 @@ import com.example.latihanday10.model.GeneralModel
 class Adapter(val daerahList: MutableList<GeneralModel>, val viewInteraction: ViewInteraction): RecyclerView.Adapter<Adapter.DaerahViewHolder>() {
     class DaerahViewHolder(val binding: ItemProvinsiBinding): RecyclerView.ViewHolder(binding.root) {}
 
+    fun updateData(list: MutableList<GeneralModel>){
+        if (daerahList.isNotEmpty()) daerahList.clear()
+        daerahList.addAll(list)
+        notifyItemRangeChanged(0, daerahList.size)
+    }
+
     interface ViewInteraction {
         fun onClick(position: Int)
     }

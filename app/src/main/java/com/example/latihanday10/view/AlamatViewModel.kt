@@ -10,13 +10,12 @@ class AlamatViewModel() : ViewModel(){
     private var dataDaerah = MutableLiveData<GatewayModel>()
     val repo = DaerahRepository()
 
-    init {
-        getData(0, 0)
-    }
-
     fun getSavedData(): LiveData<GatewayModel> = dataDaerah
 
+    fun setId(type: Int, requiredId: Int) {
+        getData(type, requiredId)
+    }
     private fun getData(type: Int, requiredId: Int) {
-        dataDaerah = repo.getRespon(type, requiredId) as MutableLiveData<GatewayModel>
+        dataDaerah = repo.getRespon(type, requiredId)
     }
 }

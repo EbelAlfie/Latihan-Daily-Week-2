@@ -1,6 +1,7 @@
 package com.example.latihanday10.view
 
 import android.os.Bundle
+import android.provider.SyncStateContract.Helpers.update
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -22,9 +23,11 @@ class AlamatActivity: AppCompatActivity(), Adapter.ViewInteraction {
         super.onCreate(savedInstanceState)
         binding = ActivityAlamatBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         initView()
+
         alamatViewModel.getSavedData().observe(this) {
-            setViewVal(it)
+            daerahAdapter.updateData(it.list)
             setLoading(it.loading)
         }
     }
@@ -33,21 +36,22 @@ class AlamatActivity: AppCompatActivity(), Adapter.ViewInteraction {
         binding.progressBar.isVisible = loading
     }
 
-    private fun setViewVal(it: GatewayModel) {
-        binding.rvListProvinsi.layoutManager = LinearLayoutManager(this)
-        daerahAdapter = Adapter(it.list, this)
-        binding.rvListProvinsi.adapter = daerahAdapter
-    }
-
     private fun initView() {
         alamatViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[AlamatViewModel::class.java]
         tvProvinsi = binding.tvProvinsi
         tvKota = binding.tvKota
         tvKecamatan = binding.tvKecamatan
         tvKelurahan = binding.tvKelurahan
+
+        binding.rvListProvinsi.layoutManager = LinearLayoutManager(this)
+        daerahAdapter = Adapter(mutableListOf(), this)
+        binding.rvListProvinsi.adapter = daerahAdapter
     }
 
     override fun onClick(position: Int) {
-        TODO("Not yet implemented")
+        when {
+
+        }
+        alamatViewModel.setId()
     }
 }
