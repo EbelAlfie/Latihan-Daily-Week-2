@@ -8,4 +8,5 @@
     <string name="kota_adalah">Kota: %s</string>
     <string name="kecamatan_adalah">Kecamatan: %s</string>
     <string name="kelurahan_adalah">Kelurahan: %s</string>
+    <string name="ganti_alamat">Ganti Alamat</string>
 </resources>

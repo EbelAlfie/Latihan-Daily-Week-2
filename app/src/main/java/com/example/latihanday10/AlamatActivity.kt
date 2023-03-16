@@ -1,35 +1,34 @@
 package com.example.latihanday10
 
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.latihanday10.databinding.ActivityAlamatBinding
 import com.example.latihanday10.model.GeneralModel
 
 class AlamatActivity : AppCompatActivity() {
-    private var data: GeneralModel? = null
     private lateinit var binding: ActivityAlamatBinding
-    private var provinsi: String? = null
-    private var kota: String? = null
-    private var camat: String? = null
+    private var dataProvinsi: GeneralModel? = null
+    private var dataKota: GeneralModel? = null
+    private var dataKecamatan: GeneralModel? = null
+    private var dataKelurahan: GeneralModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAlamatBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        data = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-            this.intent.getParcelableExtra("lurah", GeneralModel::class.java)
-        else this.intent.getParcelableExtra("lurah")
+        dataProvinsi = Utils.getIntentData(this, Utils.PROVINSI_KEY)
+        dataKota = Utils.getIntentData(this, Utils.KOTA_KEY)
+        dataKecamatan = Utils.getIntentData(this, Utils.KECAMATAN_KEY)
+        dataKelurahan = Utils.getIntentData(this, Utils.KELURAHAN_KEY)
 
-        provinsi = this.intent.getStringExtra("provinsi")
-        kota = this.intent.getStringExtra("kota")
-        camat = this.intent.getStringExtra("camat")
+        dataProvinsi?.let{binding.tvProvinsi.text = it.nama}
+        dataKota?.let{binding.tvKota.text = it.nama }
+        dataKecamatan?.let{binding.tvKecamatan.text = it.nama }
+        dataKelurahan?.let{binding.tvKelurahan.text = it.nama}
 
-        if (data != null) {
-            binding.tvProvinsi.text = getString(R.string.provinsi_adalah, provinsi)
-            binding.tvKota.text = getString(R.string.kota_adalah, kota)
-            binding.tvKecamatan.text = getString(R.string.kecamatan_adalah, camat)
-            binding.tvKelurahan.text = getString(R.string.kelurahan_adalah, data!!.nama)
+        binding.btnGantiAlamat.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 }

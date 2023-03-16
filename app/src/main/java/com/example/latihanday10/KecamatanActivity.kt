@@ -1,69 +1,64 @@
 package com.example.latihanday10
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.latihanday10.Utils.KECAMATAN_KEY
+import com.example.latihanday10.Utils.KOTA_KEY
+import com.example.latihanday10.Utils.PROVINSI_KEY
 import com.example.latihanday10.databinding.ActivityKecamatanBinding
 import com.example.latihanday10.model.GeneralModel
-import com.example.latihanday10.model.retrofit.RetrofitObj
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.latihanday10.viewmodel.GlobalViewModel
 
 class KecamatanActivity : AppCompatActivity(), Adapter.ViewInteraction {
-    private var data: GeneralModel? = null
     private lateinit var binding: ActivityKecamatanBinding
     private lateinit var daerahAdapter: Adapter
-    private var daerahList = mutableListOf<GeneralModel>()
-    private var provinsi: String? = null
+    private lateinit var globalViewModel: GlobalViewModel
+    private var dataProvinsi: GeneralModel? = null
+    private var dataKota: GeneralModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityKecamatanBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        data = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-            this.intent.getParcelableExtra("kota", GeneralModel::class.java)
-        else this.intent.getParcelableExtra("kota")
+        dataProvinsi = Utils.getIntentData(this, PROVINSI_KEY)
+        dataKota = Utils.getIntentData(this, KOTA_KEY)
 
-        provinsi = this.intent.getStringExtra("provinsi")
-
-        if (data != null) {
-            binding.tvProvinsi.text = getString(R.string.provinsi_adalah, provinsi)
-            binding.tvKota.text = getString(R.string.kota_adalah, data!!.nama)
-            getRespon(data!!.id)
+        initView()
+        dataProvinsi?.let{binding.tvProvinsi.text = it.nama}
+        dataKota?.let{
+            binding.tvKota.text = it.nama
+            initObserver(it.id)
         }
     }
 
-    private fun getRespon(id: Int) {
-        val response = RetrofitObj.apiService.getServiceKecamatan(id)
-        response.enqueue(object: Callback<KecamatanModel> {
-            override fun onResponse(call: Call<KecamatanModel>, response: Response<KecamatanModel>) {
-                Log.d("DEBUG : ", response.body().toString())
-                daerahList = response.body()!!.list
-                initRecView()
-            }
-
-            override fun onFailure(call: Call<KecamatanModel>, t: Throwable) {
-                Log.d("tests", t.message.toString())
-            }
-
-        })
+    private fun initObserver(id: Int) {
+        globalViewModel.setList(2, id)
+        globalViewModel.daerahListStatus().observe(this) {
+            daerahAdapter.updateData(it.list)
+            setProgressBar(it.loading)
+        }
     }
-    private fun initRecView() {
+
+    private fun setProgressBar(loading: Boolean) {
+        binding.progressBar.isVisible = loading
+    }
+
+    private fun initView() {
+        globalViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[GlobalViewModel::class.java]
         binding.rvListKecamatan.layoutManager = LinearLayoutManager(this)
-        daerahAdapter = Adapter(daerahList, this)
+        daerahAdapter = Adapter(mutableListOf(), this)
         binding.rvListKecamatan.adapter = daerahAdapter
     }
 
     override fun onClick(position: Int) {
-        val dataCamat = daerahList[position]
         val intent = Intent(this, KelurahanActivity::class.java)
-        intent.putExtra("provinsi", provinsi)
-        intent.putExtra("kota", data!!.nama)
-        intent.putExtra("camat", dataCamat)
+        intent.putExtra(PROVINSI_KEY, dataProvinsi)
+        intent.putExtra(KOTA_KEY, dataKota)
+        intent.putExtra(KECAMATAN_KEY, daerahAdapter.getData(position))
         startActivity(intent)
     }
 }

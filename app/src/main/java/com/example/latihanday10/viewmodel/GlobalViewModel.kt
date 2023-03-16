@@ -7,8 +7,8 @@ import com.example.latihanday10.model.GatewayModel
 import com.example.latihanday10.repository.DaerahRepository
 
 class GlobalViewModel: ViewModel() {
-    var daerahList= MutableLiveData<GatewayModel>()
-    val repo = DaerahRepository()
+    private var daerahList= MutableLiveData<GatewayModel>()
+    private val repo = DaerahRepository()
 
     fun daerahListStatus(): LiveData<GatewayModel> = daerahList
 
@@ -16,7 +16,7 @@ class GlobalViewModel: ViewModel() {
         getLists(type, requiredId)
     }
 
-    fun getLists(type: Int, requiredId: Int) {
+    private fun getLists(type: Int, requiredId: Int) {
         daerahList = repo.getRespon(type, requiredId)
     }
 }
