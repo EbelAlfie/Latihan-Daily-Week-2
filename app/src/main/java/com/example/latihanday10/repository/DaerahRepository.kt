@@ -11,10 +11,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object DaerahRepository {
+class DaerahRepository {
     private val daerahList = MutableLiveData<GatewayModel>()
 
-    fun getRespon(type: Int, requiredId: Int): LiveData<GatewayModel> {
+    fun getRespon(type: Int, requiredId: Int): MutableLiveData<GatewayModel> {
         daerahList.value = GatewayModel(
             list = mutableListOf(),
             loading = true
@@ -38,7 +38,7 @@ object DaerahRepository {
 
             override fun onFailure(call: Call<GatewayModel>, t: Throwable) {
                 Log.d("tests", t.message.toString())
-                GatewayModel(
+                daerahList.value = GatewayModel(
                     list = mutableListOf(),
                     loading = false
                 )

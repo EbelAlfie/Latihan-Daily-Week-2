@@ -1,23 +1,13 @@
 package com.example.latihanday10.view
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.latihanday10.Utils
 import com.example.latihanday10.databinding.ActivityAlamatBinding
 import com.example.latihanday10.model.GatewayModel
-import com.example.latihanday10.model.GeneralModel
-import com.example.latihanday10.model.retrofit.RetrofitObj
-import com.example.latihanday10.repository.DaerahRepository.getRespon
-import com.example.latihanday10.viewmodel.AlamatViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class AlamatActivity: AppCompatActivity(), Adapter.ViewInteraction {
     private lateinit var binding: ActivityAlamatBinding
@@ -33,7 +23,7 @@ class AlamatActivity: AppCompatActivity(), Adapter.ViewInteraction {
         binding = ActivityAlamatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
-        alamatViewModel.getDataDaerah(0,0).observe(this) {
+        alamatViewModel.getSavedData().observe(this) {
             setViewVal(it)
             setLoading(it.loading)
         }
