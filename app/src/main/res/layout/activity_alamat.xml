@@ -7,30 +7,35 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:title="@string/provinsi_title"/>
+        android:title="@string/provinsi_title"
+        android:background="@color/purple_200"/>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <TextView
         android:id="@+id/tv_provinsi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        style="@style/tv_style"/>
     <TextView
         android:id="@+id/tv_kota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        style="@style/tv_style"/>
     <TextView
         android:id="@+id/tv_kecamatan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        style="@style/tv_style"/>
     <TextView
         android:id="@+id/tv_kelurahan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        style="@style/tv_style"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_provinsi"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 </LinearLayout>

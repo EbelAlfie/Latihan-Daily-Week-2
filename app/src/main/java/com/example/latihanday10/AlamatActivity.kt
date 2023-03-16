@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihanday10.databinding.ActivityAlamatBinding
 import com.example.latihanday10.model.GatewayModel
@@ -31,28 +32,36 @@ class AlamatActivity: AppCompatActivity(), Adapter.ViewInteraction {
         getRespon(0, 0, initRecView)
     }
 
+    private fun setProgressBar(visibility: Boolean) {
+        binding.progressBar.isVisible =  visibility
+    }
+
     private fun initView() {
         tvProvinsi = binding.tvProvinsi
         tvKota = binding.tvKota
         tvKecamatan = binding.tvKecamatan
         tvKelurahan = binding.tvKelurahan
+
     }
 
     private fun getRespon(type: Int, requiredId: Int, func: () -> Unit) {
+        if (type == 4) return
         val response = getResponseType(type, requiredId)
-        response?.let {
-            it.enqueue(object: Callback<GatewayModel> {
-                override fun onResponse(call: Call<GatewayModel>, response: Response<GatewayModel>) {
-                    Log.d("DEBUG : ", response.body().toString())
-                    daerahList = response.body()!!.list
-                    func()
-                }
+        setProgressBar(Utils.PROGRESS_BAR_VISIBLE)
+        response?.enqueue(object: Callback<GatewayModel> {
+            override fun onResponse(call: Call<GatewayModel>, response: Response<GatewayModel>) {
+                Log.d("DEBUG : ", response.body().toString())
+                if (daerahList.isNotEmpty()) daerahList.clear()
+                daerahList.addAll(response.body()!!.list)
+                func()
+                setProgressBar(Utils.PROGRESS_BAR_GONE)
+            }
 
-                override fun onFailure(call: Call<GatewayModel>, t: Throwable) {
-                    Log.d("tests", t.message.toString())
-                }
-            })
-        }
+            override fun onFailure(call: Call<GatewayModel>, t: Throwable) {
+                Log.d("tests", t.message.toString())
+                setProgressBar(Utils.PROGRESS_BAR_GONE)
+            }
+        })
     }
 
     private fun getResponseType(type: Int, param: Int): Call<GatewayModel>? {
@@ -84,7 +93,7 @@ class AlamatActivity: AppCompatActivity(), Adapter.ViewInteraction {
 
     private val refreshList: () -> Unit = {
         Log.d("initag",  daerahList.toString())
-        binding.rvListProvinsi.adapter!!.notifyItemRangeChanged(0, daerahList.size)
+        daerahAdapter.notifyItemRangeChanged(0, daerahList.size)
     }
 
     private fun setView(data: GeneralModel, type: Int, tv: TextView) {
