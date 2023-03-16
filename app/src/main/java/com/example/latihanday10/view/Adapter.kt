@@ -1,4 +1,4 @@
-package com.example.latihanday10
+package com.example.latihanday10.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
