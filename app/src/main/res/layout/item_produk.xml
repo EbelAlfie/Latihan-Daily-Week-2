@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,19 +17,22 @@
             tools:text="30%"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_diskon"
-            android:padding="@dimen/padding_diskon"
+            android:padding="@dimen/item_container_padding"
             app:layout_goneMarginBottom="16dp"
-            android:layout_alignParentEnd="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/design_tv_diskon" />
 
         <ImageView
             android:id="@+id/iv_gambar_produk"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/img_width"
+            android:layout_height="@dimen/img_height"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_launcher_background"
             android:contentDescription="@string/image"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_below="@id/tv_diskon"/>
 
         <TextView
@@ -38,6 +41,8 @@
             android:layout_height="wrap_content"
             tools:text="title"
             android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_gambar_produk"
             android:layout_below="@+id/iv_gambar_produk"/>
 
         <TextView
@@ -45,6 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Rp.1000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_produk"
             android:textSize="15sp"
             android:layout_below="@+id/tv_title_produk"/>
 
@@ -55,14 +62,17 @@
             tools:text="Rp.5000"
             android:textColor="@color/red"
             android:textSize="15sp"
-            android:layout_below="@+id/tv_harga_normal"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_harga_normal" />
 
         <TextView
             android:id="@+id/tv_keranjang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Stok habis"
+            android:padding="@dimen/item_container_padding"
             android:textColor="@color/white"
             android:background="@drawable/tv_blue_design"
-            android:layout_below="@+id/tv_harga_spesial"/>
-</RelativeLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_harga_spesial" />
+</androidx.constraintlayout.widget.ConstraintLayout>

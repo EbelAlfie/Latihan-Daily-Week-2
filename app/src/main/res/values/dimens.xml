@@ -5,4 +5,6 @@
     <dimen name="padding_diskon">5dp</dimen>
     <dimen name="item_layout_margin">10dp</dimen>
     <dimen name="text_size_diskon">10sp</dimen>
+    <dimen name="img_width">100dp</dimen>
+    <dimen name="img_height">100dp</dimen>
 </resources>

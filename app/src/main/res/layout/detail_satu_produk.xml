@@ -1,89 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:padding="@dimen/layout_margin">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_gambar_produk_display"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_launcher_background"
-        android:contentDescription="@string/image"/>
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/container_title_harga"
-        style="@style/linear_layout_produk_display"
-        android:padding="@dimen/item_container_padding">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_gambar_produk_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="@string/image"/>
+
+        <RelativeLayout
+            android:id="@+id/container_title_harga"
+            style="@style/linear_layout_produk_display"
+            android:padding="@dimen/item_container_padding">
+
+            <TextView
+                android:id="@+id/tv_title_produk_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="popok celana"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_harga_produk_normal_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Rp.5000"
+                android:textSize="15sp"
+                android:layout_below="@+id/tv_title_produk_display"/>
+            <TextView
+                android:id="@+id/tv_diskon_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="30%"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:paddingEnd="@dimen/padding_diskon"
+                android:paddingStart="@dimen/padding_diskon"
+                android:background="@drawable/design_tv_diskon"
+                android:layout_toEndOf="@+id/tv_harga_produk_normal_display"
+                android:layout_below="@+id/tv_title_produk_display"/>
+            <TextView
+                android:id="@+id/tv_harga_produk_special_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Rp.5000"
+                android:textSize="20sp"
+                android:textColor="@color/red"
+                android:layout_below="@+id/tv_harga_produk_normal_display"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_deskripsi"
+            android:padding="@dimen/item_container_padding"
+            style="@style/linear_layout_produk_display">
+            <TextView
+                android:id="@+id/deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/deskripsi"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:id="@+id/tv_deskripsi_produk_display"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="popok celana murah"
+                android:layout_below="@+id/deskripsi"/>
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_title_produk_display"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_stok_dari_display"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="popok celana"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/tv_harga_produk_normal_display"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Rp.5000"
-            android:textSize="15sp"
-            android:layout_below="@+id/tv_title_produk_display"/>
-        <TextView
-            android:id="@+id/tv_diskon_display"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="30%"
+            tools:text="Stok habis"
+            android:padding="@dimen/item_container_padding"
             android:textColor="@color/white"
-            android:textSize="15sp"
-            android:paddingEnd="@dimen/padding_diskon"
-            android:paddingStart="@dimen/padding_diskon"
-            android:background="@drawable/design_tv_diskon"
-            android:layout_toEndOf="@+id/tv_harga_produk_normal_display"
-            android:layout_below="@+id/tv_title_produk_display"/>
-        <TextView
-            android:id="@+id/tv_harga_produk_special_display"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Rp.5000"
-            android:textSize="20sp"
-            android:textColor="@color/red"
-            android:layout_below="@+id/tv_harga_produk_normal_display"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/container_deskripsi"
-        android:padding="@dimen/item_container_padding"
-        style="@style/linear_layout_produk_display">
-        <TextView
-            android:id="@+id/deskripsi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/deskripsi"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="25sp"/>
-
-        <TextView
-            android:id="@+id/tv_deskripsi_produk_display"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="popok celana murah"
-            android:layout_below="@+id/deskripsi"/>
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/tv_stok_dari_display"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Stok habis"
-        android:textColor="@color/white"
-        android:background="@drawable/tv_blue_design" />
-
-</LinearLayout>
+            android:background="@drawable/tv_blue_design" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

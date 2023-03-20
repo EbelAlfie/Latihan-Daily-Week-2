@@ -1,10 +1,14 @@
 package com.example.week4latihan1
 
 import android.content.Context
+import android.graphics.Paint
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.text.Html
 import android.text.Spanned
+import android.view.View
+import android.widget.TextView
+import com.example.week4latihan1.model.ProdukModel
 
 object Utils {
     const val VISIBILITY_ON = true
@@ -29,5 +33,25 @@ object Utils {
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
             else -> false
         }
+    }
+
+    fun setDiskon(tvHargaNormal: TextView, tvDiskon: TextView, data: ProdukModel) {
+        tvHargaNormal.text = ProdukModel.getHarga(data.hargaNormal)
+        tvDiskon.text = ProdukModel.diskonToString(data.getDiskon())
+    }
+
+    fun setVisibility(tvDiskon: TextView, tvHargaNormal: TextView, isVisible: Boolean) {
+        tvDiskon.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
+        tvHargaNormal.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
+        tvHargaNormal.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+    }
+
+    fun isDiskon(tvDiskon: TextView, tvHargaNormal: TextView, diskon: Int): Boolean {
+        setVisibility(tvDiskon, tvHargaNormal,
+            when (diskon) {
+                0 -> VISIBILITY_OFF
+                else -> VISIBILITY_ON
+            })
+        return diskon != 0 //true = diskon
     }
 }

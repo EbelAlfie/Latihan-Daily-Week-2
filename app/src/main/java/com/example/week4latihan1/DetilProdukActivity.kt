@@ -1,14 +1,13 @@
 package com.example.week4latihan1
 
-import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.week4latihan1.Utils.fromHtml
+import com.example.week4latihan1.Utils.isDiskon
+import com.example.week4latihan1.Utils.setDiskon
 import com.example.week4latihan1.databinding.DetailSatuProdukBinding
 import com.example.week4latihan1.model.ProdukModel
 import com.example.week4latihan1.viewmodel.DetilProdukViewModel
@@ -48,27 +47,7 @@ class DetilProdukActivity: AppCompatActivity() {
 
         imageAdapter.insertItem(it.gambarProduk[0].imageUrl)
 
-        if (diskonStatus) setDiskon(binding, it)
-    }
-
-    private fun setDiskon(binding: DetailSatuProdukBinding, data: ProdukModel) {
-        binding.tvHargaProdukNormalDisplay.text = ProdukModel.getHarga(data.hargaNormal)
-        binding.tvDiskonDisplay.text = ProdukModel.diskonToString(data.getDiskon())
-    }
-
-    private fun setVisibility(tvDiskon: TextView, tvHargaNormal: TextView, isVisible: Boolean) {
-        tvDiskon.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-        tvHargaNormal.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-        tvHargaNormal.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-    }
-
-    private fun isDiskon(tvDiskon: TextView, tvHargaNormal: TextView, diskon: Int): Boolean {
-        setVisibility(tvDiskon, tvHargaNormal,
-            when (diskon) {
-                0 -> Utils.VISIBILITY_OFF
-                else -> Utils.VISIBILITY_ON
-            })
-        return diskon != 0 //true = diskon
+        if (diskonStatus) setDiskon(binding.tvHargaProdukNormalDisplay, binding.tvDiskonDisplay, it)
     }
 
     private fun getDataFromPrevActivity() {
