@@ -1,5 +1,6 @@
 package com.example.week4latihan1
 
+import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Paint
 import android.net.ConnectivityManager
@@ -53,5 +54,11 @@ object Utils {
                 else -> VISIBILITY_ON
             })
         return diskon != 0 //true = diskon
+    }
+
+    fun setUpDialog(msg: String, context: Context): AlertDialog.Builder {
+        return AlertDialog.Builder(context)
+            .setMessage(msg)
+            .setTitle("Error")
     }
 }

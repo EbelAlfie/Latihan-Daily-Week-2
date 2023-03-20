@@ -3,20 +3,20 @@ package com.example.week4latihan1.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.week4latihan1.model.ProdukModel
+import com.example.week4latihan1.model.AllDataModel
 import com.example.week4latihan1.repository.ProdukRepository
 
 class MainViewModel: ViewModel() {
-    private var produkList = MutableLiveData<MutableList<ProdukModel>>()
+    private var produkList = MutableLiveData<AllDataModel>()
     private val repository = ProdukRepository()
     init {
         getDataResponse()
     }
 
-    fun getProdukList(): LiveData<MutableList<ProdukModel>> = produkList
+    fun getProdukList(): LiveData<AllDataModel> = produkList
 
     private fun getDataResponse(){
-        produkList = repository.getResponse() as MutableLiveData<MutableList<ProdukModel>>
+        produkList = repository.getResponse() as MutableLiveData<AllDataModel>
     }
 
 //    fun getResponse() {

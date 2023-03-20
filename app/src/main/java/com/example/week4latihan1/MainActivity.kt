@@ -2,7 +2,6 @@ package com.example.week4latihan1
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,12 +18,7 @@ class MainActivity : AppCompatActivity(), ProdukAdapter.SetOnClick {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (!Utils.isNetworkAvailable(this)) {
-            Toast.makeText(
-                this,
-                getString(R.string.no_internet),
-                Toast.LENGTH_SHORT
-            )
-                .show()
+            setError(getString(R.string.no_internet))
             return
         }
         initView()
@@ -33,9 +27,16 @@ class MainActivity : AppCompatActivity(), ProdukAdapter.SetOnClick {
 
     private fun setObserver() {
         mainViewModel.getProdukList().observe(this) {
+            if (it.error.isNotBlank()) setError(it.error)
             if (it == null) return@observe
-            produkAdapter.updateProduk(it)
+            produkAdapter.updateProduk(it.produk)
         }
+    }
+
+    private fun setError(errorMsg: String) {
+        val dialog = Utils.setUpDialog(errorMsg, this)
+        dialog.setPositiveButton(getString(R.string.ok)) {diag,_ -> diag.dismiss() }
+        dialog.show()
     }
 
     private fun initView() {
