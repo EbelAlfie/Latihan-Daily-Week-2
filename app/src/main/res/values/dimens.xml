@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_margin">10dp</dimen>
+    <dimen name="item_container_padding">10dp</dimen>
+    <dimen name="padding_diskon">5dp</dimen>
+    <dimen name="item_layout_margin">10dp</dimen>
+    <dimen name="text_size_diskon">10sp</dimen>
+</resources>

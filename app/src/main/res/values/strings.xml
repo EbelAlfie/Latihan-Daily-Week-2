@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Week4Latihan1</string>
+    <string name="image">Gambar produk</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="stok_habis">Stok Habis</string>
+    <string name="no_internet">Internet tidak tersedia</string>
+</resources>
