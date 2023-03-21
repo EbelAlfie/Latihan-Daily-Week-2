@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), TimePickerFragment.SetOnTimeChanged, D
 
         when (binding.spinnerOptions.selectedItem) {
             "Sekali" -> alarmReceiver.setOneTimeAlarm(this, time, date, label, desc)
-            "Harian" -> alarmReceiver.setCustomTimeAlarm(this, time, date, label, desc, 1)
+            "Harian" -> alarmReceiver.setCustomTimeAlarm(this, time, date, label, desc, 1440)
             "Mingguan" -> alarmReceiver.setCustomTimeAlarm(this, time, date, label, desc, 7)
             "Bulanan" -> alarmReceiver.setCustomTimeAlarm(this, time, date, label, desc, 30)
         }

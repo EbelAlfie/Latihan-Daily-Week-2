@@ -81,7 +81,7 @@ class AlarmReceiver: BroadcastReceiver() {
             intent,
             PendingIntent.FLAG_MUTABLE
         )
-        alarmManager.setInexactRepeating(
+        alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
             AlarmManager.INTERVAL_DAY * repeatTime,
