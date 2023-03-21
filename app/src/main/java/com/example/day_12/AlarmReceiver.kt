@@ -49,7 +49,7 @@ class AlarmReceiver: BroadcastReceiver() {
             context,
             Utils.ONE_TIME_ID,
             intent,
-            PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_MUTABLE
         )
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
 
@@ -79,7 +79,7 @@ class AlarmReceiver: BroadcastReceiver() {
             context,
             Utils.REPEATING_TIME_ID,
             intent,
-            PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_MUTABLE
         )
         alarmManager.setInexactRepeating(
             AlarmManager.RTC_WAKEUP,
