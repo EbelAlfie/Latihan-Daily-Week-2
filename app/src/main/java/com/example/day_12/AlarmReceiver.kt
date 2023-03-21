@@ -84,7 +84,7 @@ class AlarmReceiver: BroadcastReceiver() {
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            AlarmManager.INTERVAL_DAY * repeatTime,
+            60 * 1000,
             pendingIntent)
 
         Toast.makeText(context, "Repeating time alarm set up", Toast.LENGTH_SHORT).show()
