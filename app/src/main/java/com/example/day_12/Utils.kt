@@ -6,6 +6,4 @@ object Utils {
     const val ID_INTENT_KEY = "id"
     const val ONE_TIME_ID = 1
     const val REPEATING_TIME_ID = 0
-    const val TYPE_ONE_TITLE = "One Time Alarm"
-    const val TYPE_REPEATING_TITLE = "Repeating Alarm"
 }

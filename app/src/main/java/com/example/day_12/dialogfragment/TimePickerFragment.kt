@@ -12,9 +12,9 @@ class TimePickerFragment: DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR)
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
-        val is24HourCycle = false
+        val is24HourCycle = true
         return TimePickerDialog(activity, this, hour, minute, is24HourCycle)
     }
 

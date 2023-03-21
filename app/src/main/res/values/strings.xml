@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Day_12</string>
     <string name="title">Alarm</string>
+    <string-array name="options">
+        <item>Sekali</item>
+        <item>Harian</item>
+        <item>Mingguan</item>
+        <item>Bulanan</item>
+    </string-array>
 </resources>

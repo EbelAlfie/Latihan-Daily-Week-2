@@ -20,6 +20,7 @@ class AlarmReceiver: BroadcastReceiver() {
         val id = intent.getIntExtra(Utils.ID_INTENT_KEY, 0)
         val label = intent.getStringExtra(Utils.LABEL_INTENT_KEY)
         val description = intent.getStringExtra(Utils.DESC_INTENT_KEY)
+
         if (label != null && description != null) {
             showAlarmNotification(context, label, description, id)
         }
@@ -55,6 +56,40 @@ class AlarmReceiver: BroadcastReceiver() {
         Toast.makeText(context, "One time alarm set up", Toast.LENGTH_SHORT).show()
     }
 
+    fun setCustomTimeAlarm(context: Context, time: String, date: String, label: String, desc: String, repeatTime: Int) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlarmReceiver::class.java)
+        intent.putExtra(Utils.LABEL_INTENT_KEY, label)
+        intent.putExtra(Utils.DESC_INTENT_KEY, desc)
+        intent.putExtra(Utils.ID_INTENT_KEY, Utils.REPEATING_TIME_ID)
+
+        Log.e("ONE TIME", "$date $time")
+        val dateArray = date.split("/").toTypedArray()
+        val timeArray = time.split(":").toTypedArray()
+
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dateArray[0]))
+        calendar.set(Calendar.MONTH, Integer.parseInt(dateArray[1]) - 1)
+        calendar.set(Calendar.YEAR, Integer.parseInt(dateArray[2]))
+        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeArray[0]))
+        calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]))
+        calendar.set(Calendar.SECOND, 0)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            Utils.REPEATING_TIME_ID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
+        alarmManager.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY * repeatTime,
+            pendingIntent)
+
+        Toast.makeText(context, "Repeating time alarm set up", Toast.LENGTH_SHORT).show()
+    }
+
     private fun showAlarmNotification(
         context: Context,
         label: String,
@@ -78,7 +113,6 @@ class AlarmReceiver: BroadcastReceiver() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            /* Create or update. */
             val channel = NotificationChannel(
                 channelId,
                 channelName,
@@ -96,5 +130,6 @@ class AlarmReceiver: BroadcastReceiver() {
         val notification = builder.build()
 
         notificationManagerCompat.notify(notifId, notification)
+
     }
 }

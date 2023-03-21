@@ -3,6 +3,7 @@ package com.example.day_12
 import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import com.example.day_12.databinding.ActivityMainBinding
 import com.example.day_12.dialogfragment.DatePickerFragment
 import com.example.day_12.dialogfragment.TimePickerFragment
@@ -19,11 +20,23 @@ class MainActivity : AppCompatActivity(), TimePickerFragment.SetOnTimeChanged, D
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initViews()
+        initAlarm()
+        initSpinner()
         initOnClick()
     }
 
-    private fun initViews() {
+    private fun initSpinner() {
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.options,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.spinnerOptions.adapter = adapter
+        }
+    }
+
+    private fun initAlarm() {
         alarmReceiver = AlarmReceiver()
     }
 
@@ -41,21 +54,27 @@ class MainActivity : AppCompatActivity(), TimePickerFragment.SetOnTimeChanged, D
         }
 
         binding.btnSetOnce.setOnClickListener {
-            setAlarmOnce()
+            setAlarm()
         }
     }
 
-    private fun setAlarmOnce() {
+    private fun setAlarm() {
         val time = binding.tvTime.text.toString()
         val date = binding.tvDate.text.toString()
         val desc = binding.etDeskripsi.text.toString()
         val label = binding.etLabel.text.toString()
-        alarmReceiver.setOneTimeAlarm(this, time, date, label, desc)
+
+        when (binding.spinnerOptions.selectedItem) {
+            "Sekali" -> alarmReceiver.setOneTimeAlarm(this, time, date, label, desc)
+            "Harian" -> alarmReceiver.setCustomTimeAlarm(this, time, date, label, desc, 1)
+            "Mingguan" -> alarmReceiver.setCustomTimeAlarm(this, time, date, label, desc, 7)
+            "Bulanan" -> alarmReceiver.setCustomTimeAlarm(this, time, date, label, desc, 30)
+        }
     }
 
     override fun onTimeChanged(hourOfDay: Int, minute: Int) {
         val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR, hourOfDay)
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
         calendar.set(Calendar.MINUTE, minute)
 
         val formatter = SimpleDateFormat("HH:mm", Locale.getDefault())
@@ -69,7 +88,7 @@ class MainActivity : AppCompatActivity(), TimePickerFragment.SetOnTimeChanged, D
         calendar.set(Calendar.MONTH, month)
         calendar.set(Calendar.YEAR, year)
 
-        val formatter = SimpleDateFormat("DD/MM/yyyy", Locale.getDefault())
+        val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
         binding.tvDate.text = formatter.format(calendar.time)
     }
