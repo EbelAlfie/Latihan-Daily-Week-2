@@ -1,7 +1,9 @@
 package com.example.day_13.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +20,7 @@ class MainActivity: AppCompatActivity(), AlamatAdapter.SetOnItemClicked {
     private lateinit var binding: ActivityMainBinding
     private lateinit var alamatAdapter: AlamatAdapter
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var preference: SharedPreferences
     companion object {
         fun getIntent(context: Context) = Intent(context, TambahAlamatActivity::class.java)
     }
@@ -27,12 +30,17 @@ class MainActivity: AppCompatActivity(), AlamatAdapter.SetOnItemClicked {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initViewModel()
-        //initData()
+
+        preference = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+
+        if (preference.getBoolean("tertambah", false)) initData()
+
         initRv()
         observer()
         initOnClick()
     }
 
+    @SuppressLint("CommitPrefEdits")
     private fun initData() {
         val data1 = AlamatModel(
                 detailAlamat = "okokokokok",
@@ -42,7 +50,7 @@ class MainActivity: AppCompatActivity(), AlamatAdapter.SetOnItemClicked {
                 checked = true
             )
         val data2 = AlamatModel(
-                detailAlamat = "aowkoakwoakowk",
+                detailAlamat = "euwhdhuewhufihiwufhiuehiwufhiwufhiwhuhuuhuhuhuhuhuhnjnjnjnjnjnjnkjnjnkjnjnjknkjnkjnkjnkkjnkjnjnjknjknjnkjnjknknjknkjnkjnkjnkjnkjnkjn",
                 label = "Bandung",
                 namaPenerima = "Aku",
                 nomorHandphone = "1231241",
@@ -74,6 +82,8 @@ class MainActivity: AppCompatActivity(), AlamatAdapter.SetOnItemClicked {
         mainViewModel.setAlamat(data3)
         mainViewModel.setAlamat(data4)
         mainViewModel.setAlamat(data5)
+
+        preference.edit().putBoolean("tertambah", true)
     }
 
     private fun observer() {
@@ -107,6 +117,7 @@ class MainActivity: AppCompatActivity(), AlamatAdapter.SetOnItemClicked {
     override fun onDeleteItemListener(position: Int) {
         mainViewModel.deleteAlamat(alamatAdapter.getItemAt(position))
         //alamatAdapter.notifyItemRemoved(position)
+        //alamatAdapter.notifyItemRangeChanged(position, alamatAdapter.itemCount)
         Toast.makeText(this, getString(R.string.data_deleted), Toast.LENGTH_SHORT).show()
     }
 

@@ -12,10 +12,10 @@ interface AlamatDao {
     @Delete
     fun deleteAlamat(alamat: AlamatModel)
 
-    @Query("SELECT * FROM alamatmodel")
+    @Query("SELECT * FROM alamatdb")
     fun getAllAlamat(): LiveData<List<AlamatModel>>
 
-    @Query("SELECT * FROM alamatmodel WHERE id=:id")
+    @Query("SELECT * FROM alamatdb WHERE id=:id")
     fun getSpesificAlamat(id: Int): LiveData<AlamatModel>
 
     @Update
