@@ -6,7 +6,7 @@ import com.example.day_13.model.AlamatModel
 
 @Dao
 interface AlamatDao {
-    @Insert(onConflict = OnConflictStrategy.NONE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAlamat(alamat: AlamatModel)
 
     @Delete

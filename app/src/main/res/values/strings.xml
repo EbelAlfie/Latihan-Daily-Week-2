@@ -15,6 +15,9 @@
     <string name="tulis_rumah_kos_kantor_dll">Tulis rumah,kos,kantor dll</string>
     <string name="_0_30">0/30</string>
     <string name="_0_64">0/64</string>
+
+    <string name="invalid_panjang">Panjang %s tidak tepat!</string>
+    <string name="blank_str">%s tidak boleh kosong!</string>
     <string name="no_handphone">No. Handphone</string>
     <string name="jadikan_alamat_utama">Jadikan alamat utama</string>
     <string name="simpan">Simpan</string>
@@ -28,7 +31,6 @@
     <string name="ya">Ya</string>
     <string name="tidak">Tidak</string>
     <string name="ok">Oke</string>
-    <string name="hapus_title">Hapus</string>
     <string name="happus_confirm_msg">Anda yakin ingin menghapus data ini?</string>
     <string name="data_added">Data berhasil ditambahkan</string>
     <string name="data_deleted">Data berhasil dihapus</string>

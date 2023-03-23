@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.day_13.databinding.AlamatItemBinding
 import com.example.day_13.model.AlamatModel
 
-class AlamatAdapter(private val alamatList: MutableList<AlamatModel>, private val listenerUtility: SetOnItemClicked): RecyclerView.Adapter<AlamatAdapter.AlamatViewHolder>() {
+class AlamatAdapter(private var alamatList: MutableList<AlamatModel>, private val listenerUtility: SetOnItemClicked): RecyclerView.Adapter<AlamatAdapter.AlamatViewHolder>() {
+
     class AlamatViewHolder(val binding: AlamatItemBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlamatViewHolder {
@@ -38,10 +39,9 @@ class AlamatAdapter(private val alamatList: MutableList<AlamatModel>, private va
         fun onUbahItemListener(position: Int)
     }
 
-    fun updateAlamat(alamat: List<AlamatModel>) {
-        alamatList.clear()
-        alamatList.addAll(alamat)
-        notifyItemRangeChanged(0, alamat.size)
+    fun updateAlamat(alamat: MutableList<AlamatModel>) {
+        alamatList = alamat
+        notifyDataSetChanged()
     }
 
     fun getItemAt(position: Int): AlamatModel {

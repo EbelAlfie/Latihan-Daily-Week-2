@@ -3,9 +3,11 @@ package com.example.day_13.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.day_13.R
 import com.example.day_13.Utils
 import com.example.day_13.ViewModelFactory
 import com.example.day_13.databinding.ActivityMainBinding
@@ -25,47 +27,60 @@ class MainActivity: AppCompatActivity(), AlamatAdapter.SetOnItemClicked {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initViewModel()
+        //initData()
         initRv()
         observer()
-        initData()
         initOnClick()
     }
 
     private fun initData() {
-        mainViewModel.setAlamat(
-            AlamatModel(
+        val data1 = AlamatModel(
                 detailAlamat = "okokokokok",
-                label = "Manado",
+                label = "Bali",
                 namaPenerima = "Aku",
                 nomorHandphone = "1231241",
                 checked = true
             )
-        )
-        mainViewModel.setAlamat(
-            AlamatModel(
+        val data2 = AlamatModel(
                 detailAlamat = "aowkoakwoakowk",
-                label = "Manado",
+                label = "Bandung",
                 namaPenerima = "Aku",
                 nomorHandphone = "1231241",
                 checked = true
             )
-        )
-        mainViewModel.setAlamat(
-            AlamatModel(
+        val data3 = AlamatModel(
                 detailAlamat = "wkwkwkwkwk",
                 label = "Manado",
                 namaPenerima = "Aku",
                 nomorHandphone = "1231241",
                 checked = true
             )
+        val data4 = AlamatModel(
+                detailAlamat = "jakarta",
+                label = "Jakarta",
+                namaPenerima = "Aku",
+                nomorHandphone = "1231241",
+                checked = true
         )
+        val data5 = AlamatModel(
+                detailAlamat = "di hutan",
+                label = "Papua",
+                namaPenerima = "Aku",
+                nomorHandphone = "1231241",
+                checked = true
+        )
+        mainViewModel.setAlamat(data1)
+        mainViewModel.setAlamat(data2)
+        mainViewModel.setAlamat(data3)
+        mainViewModel.setAlamat(data4)
+        mainViewModel.setAlamat(data5)
     }
 
     private fun observer() {
         mainViewModel.getAllAlamat().observe(this) {
             if (it == null) return@observe
-            alamatAdapter.updateAlamat(it)
-            alamatAdapter.notifyItemChanged(alamatAdapter.itemCount)
+            alamatAdapter.updateAlamat(it.toMutableList())
+            //alamatAdapter.notifyItemChanged(0, alamatAdapter.itemCount)
         }
     }
 
@@ -92,7 +107,7 @@ class MainActivity: AppCompatActivity(), AlamatAdapter.SetOnItemClicked {
     override fun onDeleteItemListener(position: Int) {
         mainViewModel.deleteAlamat(alamatAdapter.getItemAt(position))
         //alamatAdapter.notifyItemRemoved(position)
-        //alamatAdapter.notifyItemRangeChanged(position, alamatAdapter.itemCount)
+        Toast.makeText(this, getString(R.string.data_deleted), Toast.LENGTH_SHORT).show()
     }
 
     override fun onUbahItemListener(position: Int) {
