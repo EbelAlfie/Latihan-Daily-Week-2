@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">LatihanDay13</string>
+    <string name="toolbar_title">Daftar Alamat</string>
+    <string name="tambah_alamat">+ Tambah Alamat</string>
+    <string name="label">Label</string>
+    <string name="alamat">Alamat</string>
+    <string name="penerima">Penerima</string>
+    <string name="notelp">NoTelp</string>
+    <string name="backmenu">back</string>
+    <string name="short_telp">Nomor telepon terlalu pendek</string>
+    <string name="kota">Kota</string>
+    <string name="detail_alamat">Detail Alamat</string>
+    <string name="tulis_nama_jalan_kantor_no_rumah">Tulis nama jalan/kantor/no.rumah</string>
+    <string name="_0_100">0/100</string>
+    <string name="tulis_rumah_kos_kantor_dll">Tulis rumah,kos,kantor dll</string>
+    <string name="_0_30">0/30</string>
+    <string name="_0_64">0/64</string>
+    <string name="no_handphone">No. Handphone</string>
+    <string name="jadikan_alamat_utama">Jadikan alamat utama</string>
+    <string name="simpan">Simpan</string>
+    <string name="nama_penerima">Nama Penerima</string>
+    <string name="alamat_belum_dipilih">alamat belum dipilih</string>
+    <string name="hapus">Hapus</string>
+    <string name="ubah">Ubah</string>
+    <string name="data_kosong">Data anda kosong!</string>
+    <string name="submit_confirm_msg">Anda yakin ingin mensubmit?</string>
+    <string name="submit_title">Submit</string>
+    <string name="ya">Ya</string>
+    <string name="tidak">Tidak</string>
+    <string name="ok">Oke</string>
+    <string name="hapus_title">Hapus</string>
+    <string name="happus_confirm_msg">Anda yakin ingin menghapus data ini?</string>
+    <string name="data_added">Data berhasil ditambahkan</string>
+    <string name="data_deleted">Data berhasil dihapus</string>
+    <string name="data_changed">Data berhasil diubah</string>
+</resources>

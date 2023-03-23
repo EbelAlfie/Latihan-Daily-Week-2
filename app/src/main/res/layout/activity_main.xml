@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/parentlayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_tambah_alamat"
+        android:text="@string/tambah_alamat"
+        android:layout_alignParentEnd="true"
+        style="@style/textview"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_list_alamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_tambah_alamat" />
+
+    <TextView
+        android:id="@+id/tv_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/data_kosong"
+        android:visibility="gone"/>
+</RelativeLayout>

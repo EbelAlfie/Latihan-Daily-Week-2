@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_itemalamat"
+        android:elevation="4dp"
+        android:layout_margin="@dimen/marginview"
+        android:padding="@dimen/layout_item">
+
+        <TextView
+            android:id="@+id/tv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Manado"
+            style="@style/textview_item" />
+
+        <TextView
+            android:id="@+id/tv_label_dan_telp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="aku - 089293849283"
+            style="@style/textview_item_detail"
+            android:layout_below="@id/tv_label"/>
+        <TextView
+            android:id="@+id/tv_detail_alamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/textview_item_detail"
+            tools:text="Bandung"
+            android:layout_below="@id/tv_label_dan_telp"/>
+        <TextView
+            android:id="@+id/tv_detail_kota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            tools:text="jalan Jakarta"
+            style="@style/textview_item_detail"
+            android:layout_below="@id/tv_detail_alamat"/>
+
+        <View
+            android:id="@+id/border_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_detail_kota"
+            android:background="@color/gray"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_ubah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/border_horizontal"
+            android:text="@string/ubah"
+            style="@style/btn_itemalamat"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_hapus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/btn_ubah"
+            android:layout_below="@id/border_horizontal"
+            android:text="@string/hapus"
+            style="@style/btn_itemalamat"/>
+
+        <Switch
+            android:id="@+id/switch_item_alamat"
+            android:layout_width="@dimen/switch_height"
+            android:layout_height="@dimen/switch_height"
+            android:layout_below="@id/border_horizontal"
+            android:layout_alignParentEnd="true"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+        <TextView
+            android:id="@+id/status_alamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/alamat_belum_dipilih"
+            android:textColor="@color/darkyellow"
+            android:layout_below="@id/btn_hapus"
+            android:background="@color/yellow"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
