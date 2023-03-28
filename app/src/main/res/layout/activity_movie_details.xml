@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/img_movie"
             tools:text="15%"
+            android:layout_margin="@dimen/container_padding"
             style="@style/rating_view_style"
             />
         <TextView
@@ -28,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_rating"
             tools:text="Ini film"
+            android:layout_margin="@dimen/container_padding"
             style="@style/big_text_style"
             />
         <TextView
@@ -36,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_movie_title"
             tools:text="2019"
+            android:layout_margin="@dimen/container_padding"
             style="@style/medium_text_style"/>
         <TextView
             android:id="@+id/tv_description"
@@ -43,6 +46,7 @@
             android:layout_height="wrap_content"
             style="@style/small_text_style"
             android:layout_below="@+id/tv_year"
+            android:layout_margin="@dimen/container_padding"
             tools:text="ini deskripsi dari film"/>
 
 
