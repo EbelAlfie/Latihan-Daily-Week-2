@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MovieDetailsActivity"
+    android:padding="@dimen/container_padding">
+    <ImageView
+        android:id="@+id/img_movie"
+        style="@style/image_size_style"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_movie"
+        tools:text="15%"
+        style="@style/rating_view_style"
+        />
+    <TextView
+        android:id="@+id/tv_movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_rating"
+        tools:text="Ini film"
+        style="@style/big_text_style"
+        />
+    <TextView
+        android:id="@+id/tv_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_movie_title"
+        tools:text="2019"
+        style="@style/medium_text_style"/>
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/small_text_style"
+        android:layout_below="@+id/tv_year"
+        tools:text="ini deskripsi dari film"/>
+
+
+</RelativeLayout>

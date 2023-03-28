@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/item_style"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/item_design"
+    android:layout_margin="@dimen/container_padding">
+    <ImageView
+        android:id="@+id/img_movie"
+        style="@style/image_size_style"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="15%"
+        android:layout_margin="@dimen/container_padding"
+        style="@style/rating_view_style"
+        android:layout_below="@id/img_movie"/>
+    <TextView
+        android:id="@+id/tv_movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_rating"
+        tools:text="Ini film"
+        android:layout_margin="@dimen/container_padding"
+        style="@style/big_text_style"
+        />
+    <TextView
+        android:id="@+id/tv_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_movie_title"
+        tools:text="2019"
+        android:layout_margin="@dimen/container_padding"
+        style="@style/medium_text_style"/>
+
+</RelativeLayout>

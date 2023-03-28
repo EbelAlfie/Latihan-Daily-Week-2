@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/purple_background">
+        <ProgressBar
+            android:id="@+id/loading_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search"
+            android:layout_margin="@dimen/container_padding"
+            android:background="@drawable/search_bar_design"/>
+
+        <TextView
+            android:id="@+id/tv_popular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/header_text"
+            android:text="@string/popular_header"
+            android:layout_below="@id/search_bar"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_popular_list_movie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_popular"/>
+
+</RelativeLayout>
