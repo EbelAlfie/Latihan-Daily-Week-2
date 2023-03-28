@@ -19,6 +19,17 @@ class MovieRepositoryImplement(): MovieUseCase {
         }.flowOn(Dispatchers.IO)
     }
 
+    override fun getOneMovie(id: Int): Flow<MovieModel> {
+        return flow {
+            try{
+                val response = RetrofitObj.retrofitInstance.getSpecificMovie(id, RetrofitObj.API_KEY)
+                emit(response)
+            } catch (e: Exception) {
+                emit(MovieModel(0,"", 0.0f,"","",""))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
 //    override fun getOneMovie(): MovieModel {
 //        return MovieModel()
 //    }

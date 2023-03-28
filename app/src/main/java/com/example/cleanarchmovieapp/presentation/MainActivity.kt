@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cleanarchmovieapp.R
+import com.example.cleanarchmovieapp.Utils
 import com.example.cleanarchmovieapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
     }
 
     private fun setObserver() {
-        viewModel.getMovieData().observe(this) {
+        viewModel.getPopularMovieData().observe(this) {
             if (it.page == 0) return@observe
             if (it.errorMsg.isNotBlank()) {
                 Toast.makeText(this, it.errorMsg, Toast.LENGTH_SHORT).show()
@@ -45,6 +45,6 @@ class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
     }
 
     override fun onItemClicked(position: Int) {
-
+        Utils.initIntent(this, MovieDetailsActivity::class.java, movieAdapter.getId(position))
     }
 }
