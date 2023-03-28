@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
 
     private fun setObserver() {
         viewModel.getPopularMovieData().observe(this) {
-            if (it.page == 0) return@observe
+            if (it == null) return@observe
             if (it.errorMsg.isNotBlank()) {
                 Toast.makeText(this, it.errorMsg, Toast.LENGTH_SHORT).show()
                 return@observe

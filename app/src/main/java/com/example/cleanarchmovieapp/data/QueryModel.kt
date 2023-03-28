@@ -9,4 +9,6 @@ data class QueryModel (
     var result: MutableList<MovieModel> = mutableListOf(),
     var errorMsg: String = "",
     var loadingStatus: Boolean = false
-)
+) {
+
+}

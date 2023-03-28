@@ -1,22 +1,22 @@
 package com.example.cleanarchmovieapp.data
 
-import com.example.cleanarchmovieapp.domain.MovieUseCase
 import com.example.cleanarchmovieapp.data.service.RetrofitObj
 import com.example.cleanarchmovieapp.domain.MovieEntity
 import com.example.cleanarchmovieapp.domain.MovieRepository
+import com.example.cleanarchmovieapp.domain.QueryEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class MovieRepositoryImplement(): MovieRepository {
-    override fun getPopularMovie(page: Int): Flow<QueryModel> {
+    override fun getPopularMovie(page: Int): Flow<QueryEntity> {
         return flow {
             try{
                 val response = RetrofitObj.retrofitInstance.getAllPopularMovies(RetrofitObj.API_KEY, page)
-                emit(response)
+                emit(QueryEntity(MovieModel.convertList(response.result), "", false))
             } catch (e: Exception) {
-                emit(QueryModel(0, mutableListOf(), e.message.toString(), false))
+                emit(QueryEntity(listOf(), e.message.toString(), false))
             }
         }.flowOn(Dispatchers.IO)
     }

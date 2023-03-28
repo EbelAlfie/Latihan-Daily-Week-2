@@ -21,5 +21,10 @@ data class MovieModel(
         fun convert(it: MovieModel): MovieEntity {
             return MovieEntity(it.id, it.image, it.rating, it.year, it.name, it.desc)
         }
+        fun convertList(movie: List<MovieModel>): List<MovieEntity> {
+            return movie.map {
+                convert(it)
+            }
+        }
     }
 }
