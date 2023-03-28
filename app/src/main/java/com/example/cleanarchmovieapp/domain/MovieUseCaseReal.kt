@@ -8,4 +8,5 @@ class MovieUseCaseReal(private val repo: MovieUseCase): MovieUseCase {
     override fun getPopularMovie(page: Int): Flow<QueryModel> {
         return repo.getPopularMovie(page)
     }
+
 }

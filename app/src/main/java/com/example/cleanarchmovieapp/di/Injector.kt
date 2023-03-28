@@ -6,7 +6,7 @@ import com.example.cleanarchmovieapp.domain.MovieUseCaseReal
 
 object Injector {
     fun useCaseProvider(): MovieUseCase {
-        val repo = MovieRepositoryImplement()
+        val repo = repositoryProvider()
         return MovieUseCaseReal(repo)
     }
     fun repositoryProvider(): MovieUseCase {

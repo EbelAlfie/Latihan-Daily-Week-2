@@ -4,17 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cleanarchmovieapp.Utils
+import com.example.cleanarchmovieapp.data.MovieModel
 import com.example.cleanarchmovieapp.databinding.MovieItemBinding
+import com.example.cleanarchmovieapp.domain.MovieEntity
 import com.squareup.picasso.Picasso
 
-class MovieAdapter(private var movieList: List<MovieEntity>, private val listener: SetOnItemClicked): RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(private var movieList: List<MovieModel>, private val listener: SetOnItemClicked): RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     class MovieViewHolder(val binding: MovieItemBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder(MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    fun updateList(newMovie: List<MovieEntity>) {
+    fun updateList(newMovie: List<MovieModel>) {
         movieList = newMovie
         notifyDataSetChanged()
     }
