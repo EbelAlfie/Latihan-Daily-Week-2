@@ -1,5 +1,6 @@
 package com.example.cleanarchmovieapp.data
 
+import com.example.cleanarchmovieapp.domain.MovieEntity
 import com.google.gson.annotations.SerializedName
 
 data class MovieModel(
@@ -15,4 +16,10 @@ data class MovieModel(
     val name: String,
     @SerializedName("overview")
     val desc: String,
-)
+){
+    companion object {
+        fun convert(it: MovieModel): MovieEntity {
+            return MovieEntity(it.id, it.image, it.rating, it.year, it.name, it.desc)
+        }
+    }
+}

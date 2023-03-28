@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cleanarchmovieapp.data.MovieModel
 import com.example.cleanarchmovieapp.data.QueryModel
+import com.example.cleanarchmovieapp.domain.MovieEntity
 import com.example.cleanarchmovieapp.domain.MovieUseCase
 import kotlinx.coroutines.launch
 
@@ -13,8 +14,8 @@ class MainViewModel(private val useCase: MovieUseCase): ViewModel() {
     private var _popularMovieData = MutableLiveData<QueryModel>()
     fun getPopularMovieData(): LiveData<QueryModel> = _popularMovieData
 
-    private var _specificMovieData = MutableLiveData<MovieModel>()
-    fun getSpecificMovie(): LiveData<MovieModel> = _specificMovieData
+    private var _specificMovieData = MutableLiveData<MovieEntity>()
+    fun getSpecificMovie(): LiveData<MovieEntity> = _specificMovieData
 
     init {
         getPopularMovie(20)

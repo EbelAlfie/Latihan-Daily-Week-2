@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cleanarchmovieapp.Utils
 import com.example.cleanarchmovieapp.data.MovieModel
 import com.example.cleanarchmovieapp.databinding.ActivityMovieDetailsBinding
+import com.example.cleanarchmovieapp.domain.MovieEntity
 import com.squareup.picasso.Picasso
 
 
@@ -38,7 +39,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setView(it: MovieModel) {
+    private fun setView(it: MovieEntity) {
         Picasso.get().load(Utils.BASE_IMAGE_URL + it.image).into(binding.imgMovie)
         binding.tvMovieTitle.text = it.name
         binding.tvYear.text = it.year

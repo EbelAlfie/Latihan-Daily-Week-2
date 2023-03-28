@@ -4,7 +4,7 @@ import com.example.cleanarchmovieapp.data.MovieModel
 import com.example.cleanarchmovieapp.data.QueryModel
 import kotlinx.coroutines.flow.Flow
 
-interface MovieUseCase {
+interface MovieRepository {
     fun getPopularMovie(page: Int): Flow<QueryModel>
     fun getOneMovie(id: Int): Flow<MovieEntity>
 }
