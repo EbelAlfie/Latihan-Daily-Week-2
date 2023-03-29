@@ -5,21 +5,31 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cleanarchmovieapp.MovieApp
 import com.example.cleanarchmovieapp.Utils
 import com.example.cleanarchmovieapp.databinding.ActivityMainBinding
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MainViewModel
     private lateinit var movieAdapter: MovieAdapter
+    private lateinit var viewModel: MainViewModel
+
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MovieApp).componentPenghubung.injectMain(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initViewModel()
+        initVm()
         initRecView()
         setObserver()
+    }
+
+    private fun initVm() {
+        viewModel = ViewModelProvider(this, vmFactory)[MainViewModel::class.java]
     }
 
     private fun setObserver() {
@@ -37,11 +47,6 @@ class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
         binding.rvPopularListMovie.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         movieAdapter = MovieAdapter(mutableListOf(), this)
         binding.rvPopularListMovie.adapter = movieAdapter
-    }
-
-    private fun initViewModel() {
-        val factory = ViewModelFactory.getInstance()
-        viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
     }
 
     override fun onItemClicked(position: Int) {

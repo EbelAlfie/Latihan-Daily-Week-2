@@ -3,24 +3,29 @@ package com.example.cleanarchmovieapp.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.cleanarchmovieapp.MovieApp
 import com.example.cleanarchmovieapp.Utils
-import com.example.cleanarchmovieapp.data.MovieModel
 import com.example.cleanarchmovieapp.databinding.ActivityMovieDetailsBinding
 import com.example.cleanarchmovieapp.domain.MovieEntity
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 
 class MovieDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMovieDetailsBinding
-    private var id: Int = -1
     private lateinit var viewModel: MainViewModel
+    private var id: Int = -1
+
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MovieApp).componentPenghubung.injectDetail(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        id = this.intent.getIntExtra(Utils.ID_KEY, -1)
         initViewModel()
+        id = this.intent.getIntExtra(Utils.ID_KEY, -1)
         if (id != -1){
             viewModel.setMovie(id)
             setObserver()
@@ -28,8 +33,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        val factory = ViewModelFactory.getInstance()
-        viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, vmFactory)[MainViewModel::class.java]
     }
 
     private fun setObserver() {

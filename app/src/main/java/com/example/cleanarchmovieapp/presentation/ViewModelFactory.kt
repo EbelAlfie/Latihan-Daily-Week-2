@@ -2,14 +2,14 @@ package com.example.cleanarchmovieapp.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cleanarchmovieapp.di.Injector
 import com.example.cleanarchmovieapp.domain.MovieUseCase
+import javax.inject.Inject
 
-class ViewModelFactory(
+class ViewModelFactory @Inject constructor(
     private var movieUseCase: MovieUseCase
 ) : ViewModelProvider.NewInstanceFactory() {
 
-    companion object {
+    /*companion object {
         @Volatile
         private var instance: ViewModelFactory? = null
 
@@ -17,7 +17,7 @@ class ViewModelFactory(
             instance ?: synchronized(this) {
                 instance ?: ViewModelFactory(Injector.useCaseProvider())
             }
-    }
+    }*/
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -8,8 +8,9 @@ import com.example.cleanarchmovieapp.domain.MovieEntity
 import com.example.cleanarchmovieapp.domain.MovieUseCase
 import com.example.cleanarchmovieapp.domain.QueryEntity
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(private val useCase: MovieUseCase): ViewModel() {
+class MainViewModel @Inject constructor(private val useCase: MovieUseCase): ViewModel() {
     private var _popularMovieData = MutableLiveData<QueryEntity>()
     fun getPopularMovieData(): LiveData<QueryEntity> = _popularMovieData
 

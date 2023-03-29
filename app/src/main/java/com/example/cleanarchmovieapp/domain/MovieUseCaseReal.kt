@@ -1,8 +1,9 @@
 package com.example.cleanarchmovieapp.domain
 
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class MovieUseCaseReal(private val repo: MovieRepository): MovieUseCase {
+class MovieUseCaseReal @Inject constructor(private val repo: MovieRepository): MovieUseCase {
     override fun getPopularMovie(page: Int): Flow<QueryEntity> {
         return repo.getPopularMovie(page)
     }
