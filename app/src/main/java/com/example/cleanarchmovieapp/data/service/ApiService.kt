@@ -10,7 +10,7 @@ interface ApiService {
     @GET("movie/popular")
     suspend fun getAllPopularMovies(
         @Query("api_key") apiKey: String,
-        @Query("page") page: Int
+        @Query("page") page: Int,
     ): QueryModel
 
     @GET("movie/{id}")

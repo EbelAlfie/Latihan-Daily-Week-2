@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cleanarchmovieapp.MovieApp
 import com.example.cleanarchmovieapp.Utils
 import com.example.cleanarchmovieapp.databinding.ActivityMainBinding
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
@@ -23,6 +26,29 @@ class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initRefresh()
+        if (!noInternet()) {
+            setError()
+            return
+        }
+        initAll()
+    }
+
+    private fun setError() {
+        Toast.makeText(this, "Tidak ada internet", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun initRefresh() {
+        binding.swiperefresh.setOnRefreshListener {
+            initAll()
+            binding.swiperefresh.isRefreshing = false
+        }
+    }
+
+    private fun noInternet(): Boolean = Utils.isNetworkAvailable(this)
+
+    private fun initAll() {
         initVm()
         initRecView()
         setObserver()
@@ -33,19 +59,21 @@ class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
     }
 
     private fun setObserver() {
-        viewModel.getPopularMovieData().observe(this) {
-            if (it == null) return@observe
-            if (it.errorMsg.isNotBlank()) {
-                Toast.makeText(this, it.errorMsg, Toast.LENGTH_SHORT).show()
-                return@observe
+        lifecycleScope.launch {
+            viewModel.getPopularMovie().collectLatest {
+                /*if (it.errorMsg.isNotBlank()) {
+                    Toast.makeText(this, it.errorMsg, Toast.LENGTH_SHORT).show()
+                    return@collectLatest
+                }*/
+                //TODO kirim ke db
+                movieAdapter.submitData(lifecycle, it)
             }
-            movieAdapter.updateList(it.result)
         }
     }
 
     private fun initRecView() {
         binding.rvPopularListMovie.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        movieAdapter = MovieAdapter(mutableListOf(), this)
+        movieAdapter = MovieAdapter(this)
         binding.rvPopularListMovie.adapter = movieAdapter
     }
 

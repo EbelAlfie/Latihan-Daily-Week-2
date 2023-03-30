@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.example.cleanarchmovieapp.domain.MovieEntity
 import com.example.cleanarchmovieapp.domain.MovieUseCase
 import com.example.cleanarchmovieapp.domain.QueryEntity
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,16 +20,11 @@ class MainViewModel @Inject constructor(private val useCase: MovieUseCase): View
     fun getSpecificMovie(): LiveData<MovieEntity> = _specificMovieData
 
     init {
-        getPopularMovie(20)
+        getPopularMovie()
     }
 
-    private fun getPopularMovie(page: Int) {
-        _popularMovieData.value = QueryEntity(mutableListOf(), "", true)
-        viewModelScope.launch {
-            useCase.getPopularMovie(page).collect {
-                _popularMovieData.postValue(it)
-            }
-        }
+    fun getPopularMovie(): Flow<PagingData<MovieEntity>> {
+        return useCase.getPopularMovie(viewModelScope)
     }
 
     fun setMovie(id: Int) {
