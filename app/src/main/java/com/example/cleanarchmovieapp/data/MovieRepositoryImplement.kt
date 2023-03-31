@@ -35,7 +35,8 @@ class MovieRepositoryImplement @Inject constructor(private val retrofitObj: ApiS
     }
 
     override fun insert(movieEntity: MovieEntity) {
-        val movieModel = MovieModel.convertToMovieEntity
+        val movieModel = MovieModel.convertToMovieModel(movieEntity)
+
     }
 
 }

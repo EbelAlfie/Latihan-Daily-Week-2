@@ -17,11 +17,9 @@ class MoviePagingSource (private val ApiObj: ApiService, private val dbObj: Loca
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieEntity> {
         val position = params.key ?: 1
         return try {
-            val response = ApiObj.getAllPopularMovies(
-                apiKey = Utils.API_KEY,
-                page = if (position == 1) position else position * 10 - 10,
-            )
-            val listData =  MovieModel.convertList(response.result)
+            val list = if (mode == Utils.ONLINE) getOnlineList(position) else getOfflineList(position)
+
+            val listData =
 
             LoadResult.Page(
                 data = listData,
@@ -31,5 +29,17 @@ class MoviePagingSource (private val ApiObj: ApiService, private val dbObj: Loca
         } catch (e: Exception) {
             LoadResult.Error(e)
         }
+    }
+
+    private fun getOfflineList(position: Int): List<MovieEntity> {
+        //dbObj.MovieDao().insertMovie()
+    }
+
+    private suspend fun getOnlineList(position: Int): List<MovieEntity> {
+        val response = ApiObj.getAllPopularMovies(
+            apiKey = Utils.API_KEY,
+            page = if (position == 1) position else position * 10 - 10,
+        )
+        return MovieModel.convertList(response.result)
     }
 }

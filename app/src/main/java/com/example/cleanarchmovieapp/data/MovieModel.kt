@@ -20,7 +20,7 @@ data class MovieModel(
     companion object {
 
         fun convertToMovieModel(it: MovieEntity): MovieDbModel {
-            return MovieDbModel(it.id, it.image, it.rating, it.year)
+            return MovieDbModel(it.id, it.image, it.rating, it.year, it.name, it.desc)
         }
 
         fun convertToMovieEntity(it: MovieModel): MovieEntity {
