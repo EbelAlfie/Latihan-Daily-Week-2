@@ -10,6 +10,7 @@ object Utils {
     const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500/"
     const val API_KEY = "78735294e6c5f10cefe449732a2bfbd8"
     const val DEFAULT_SIZE = 10
+    const val ONLINE = 1
 
     fun initIntent(context: Context, kelas: Class<*>, item: Int){
         val intent = Intent(context, kelas)
@@ -26,7 +27,6 @@ object Utils {
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
             else -> false
         }
     }

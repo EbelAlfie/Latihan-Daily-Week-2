@@ -18,12 +18,17 @@ data class MovieModel(
     val desc: String?,
 ){
     companion object {
-        fun convert(it: MovieModel): MovieEntity {
+
+        fun convertToMovieModel(it: MovieEntity): MovieDbModel {
+            return MovieDbModel(it.id, it.image, it.rating, it.year)
+        }
+
+        fun convertToMovieEntity(it: MovieModel): MovieEntity {
             return MovieEntity(it.id ?: 0, it.image ?: "", it.rating ?: 0.0f, it.year ?: "", it.name ?: "", it.desc ?: "")
         }
         fun convertList(movie: List<MovieModel?>): List<MovieEntity> {
             return movie.map {
-                convert(MovieModel(it?.id, it?.image, it?.rating, it?.year, it?.name, it?.desc))
+                convertToMovieEntity(MovieModel(it?.id, it?.image, it?.rating, it?.year, it?.name, it?.desc))
             }
         }
     }

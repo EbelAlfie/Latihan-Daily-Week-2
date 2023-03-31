@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cleanarchmovieapp.MovieApp
+import com.example.cleanarchmovieapp.R
 import com.example.cleanarchmovieapp.Utils
 import com.example.cleanarchmovieapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.collectLatest
@@ -28,21 +29,23 @@ class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
         setContentView(binding.root)
 
         initRefresh()
-        if (!noInternet()) {
-            setError()
-            return
-        }
+        if (!checkInternet()) return
         initAll()
     }
 
+    private fun checkInternet(): Boolean {
+        return if (!noInternet()) { setError(); false } else true
+    }
+
     private fun setError() {
-        Toast.makeText(this, "Tidak ada internet", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show()
     }
 
     private fun initRefresh() {
         binding.swiperefresh.setOnRefreshListener {
-            initAll()
             binding.swiperefresh.isRefreshing = false
+            if (!checkInternet()) return@setOnRefreshListener
+            initAll()
         }
     }
 
@@ -60,12 +63,13 @@ class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
 
     private fun setObserver() {
         lifecycleScope.launch {
-            viewModel.getPopularMovie().collectLatest {
+            viewModel.getPopularMovie(Utils.ONLINE).collectLatest {
                 /*if (it.errorMsg.isNotBlank()) {
                     Toast.makeText(this, it.errorMsg, Toast.LENGTH_SHORT).show()
                     return@collectLatest
                 }*/
                 //TODO kirim ke db
+
                 movieAdapter.submitData(lifecycle, it)
             }
         }

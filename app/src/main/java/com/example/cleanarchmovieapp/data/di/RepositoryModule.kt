@@ -5,7 +5,7 @@ import com.example.cleanarchmovieapp.domain.MovieRepository
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [NetworkModule::class])
+@Module(includes = [NetworkModule::class, LocalDbModule::class])
 abstract class RepositoryModule {
 
     @Binds

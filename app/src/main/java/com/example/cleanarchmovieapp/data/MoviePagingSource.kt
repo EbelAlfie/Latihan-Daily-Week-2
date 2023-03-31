@@ -4,11 +4,12 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.cleanarchmovieapp.Utils
+import com.example.cleanarchmovieapp.data.di.LocalDbModule
 import com.example.cleanarchmovieapp.data.service.ApiService
 import com.example.cleanarchmovieapp.domain.MovieEntity
-import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
 
-class MoviePagingSource (private val ApiObj: ApiService): PagingSource<Int, MovieEntity>() {
+class MoviePagingSource (private val ApiObj: ApiService, private val dbObj: LocalDbModule, val mode: Int): PagingSource<Int, MovieEntity>() {
     override fun getRefreshKey(state: PagingState<Int, MovieEntity>): Int? {
         return null
     }
@@ -21,6 +22,7 @@ class MoviePagingSource (private val ApiObj: ApiService): PagingSource<Int, Movi
                 page = if (position == 1) position else position * 10 - 10,
             )
             val listData =  MovieModel.convertList(response.result)
+
             LoadResult.Page(
                 data = listData,
                 nextKey = if (listData.isEmpty()) null else position + 1,
