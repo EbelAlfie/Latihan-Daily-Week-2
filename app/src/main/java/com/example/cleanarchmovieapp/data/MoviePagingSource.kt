@@ -32,7 +32,7 @@ class MoviePagingSource (private val ApiObj: ApiService, private val dbObj: Loca
     }
 
     private fun getOfflineList(position: Int): List<MovieEntity> {
-        //return dbObj.MovieDao().getPrevList()
+        return dbObj.MovieDao().getPrevList()
     }
 
     private suspend fun getOnlineList(position: Int): List<MovieEntity> {
