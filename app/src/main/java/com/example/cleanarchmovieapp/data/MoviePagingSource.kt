@@ -1,13 +1,11 @@
 package com.example.cleanarchmovieapp.data
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.cleanarchmovieapp.Utils
 import com.example.cleanarchmovieapp.data.di.LocalDbModule
 import com.example.cleanarchmovieapp.data.service.ApiService
 import com.example.cleanarchmovieapp.domain.MovieEntity
-import kotlinx.coroutines.CoroutineScope
 
 class MoviePagingSource (private val ApiObj: ApiService, private val dbObj: LocalDbModule, val mode: Int): PagingSource<Int, MovieEntity>() {
     override fun getRefreshKey(state: PagingState<Int, MovieEntity>): Int? {
@@ -17,9 +15,7 @@ class MoviePagingSource (private val ApiObj: ApiService, private val dbObj: Loca
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieEntity> {
         val position = params.key ?: 1
         return try {
-            val list = if (mode == Utils.ONLINE) getOnlineList(position) else getOfflineList(position)
-
-            val listData =
+            val listData = if (mode == Utils.ONLINE) getOnlineList(position) else getOfflineList()
 
             LoadResult.Page(
                 data = listData,
@@ -31,8 +27,10 @@ class MoviePagingSource (private val ApiObj: ApiService, private val dbObj: Loca
         }
     }
 
-    private fun getOfflineList(position: Int): List<MovieEntity> {
-        return dbObj.MovieDao().getPrevList()
+    private suspend fun getOfflineList(): List<MovieEntity> {
+        return MovieModel.convertListToEntity(
+            dbObj.MovieDao().getPrevList()
+        )
     }
 
     private suspend fun getOnlineList(position: Int): List<MovieEntity> {
@@ -40,6 +38,12 @@ class MoviePagingSource (private val ApiObj: ApiService, private val dbObj: Loca
             apiKey = Utils.API_KEY,
             page = if (position == 1) position else position * 10 - 10,
         )
-        return MovieModel.convertList(response.result)
+        val data = MovieModel.convertList(response.result)
+
+        data.forEach {
+            dbObj.MovieDao().insertMovie(MovieModel.convertToMovieDbModel(it))
+        }
+
+        return data
     }
 }

@@ -28,13 +28,14 @@ class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initVm()
+        initAll()
         initRefresh()
         if (!checkInternet()) return
-        initAll()
     }
 
     private fun checkInternet(): Boolean {
-        return if (!noInternet()) { setError(); false } else true
+        return if (!noInternet()) {setObserver(Utils.OFFLINE); setError(); false } else { viewModel.deleteAll(); true }
     }
 
     private fun setError() {
@@ -52,18 +53,17 @@ class MainActivity : AppCompatActivity(), MovieAdapter.SetOnItemClicked {
     private fun noInternet(): Boolean = Utils.isNetworkAvailable(this)
 
     private fun initAll() {
-        initVm()
         initRecView()
-        setObserver()
+        setObserver(Utils.ONLINE)
     }
 
     private fun initVm() {
         viewModel = ViewModelProvider(this, vmFactory)[MainViewModel::class.java]
     }
 
-    private fun setObserver() {
+    private fun setObserver(param: Int) {
         lifecycleScope.launch {
-            viewModel.getPopularMovie(Utils.ONLINE).collectLatest {
+            viewModel.getPopularMovie(param).collectLatest {
                 /*if (it.errorMsg.isNotBlank()) {
                     Toast.makeText(this, it.errorMsg, Toast.LENGTH_SHORT).show()
                     return@collectLatest

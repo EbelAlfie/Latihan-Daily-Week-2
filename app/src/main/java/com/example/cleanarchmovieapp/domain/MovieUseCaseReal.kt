@@ -14,8 +14,8 @@ class MovieUseCaseReal @Inject constructor(private val repo: MovieRepository): M
         return repo.getOneMovie(id)
     }
 
-    override fun insertMovie(movie: MovieEntity) {
-        repo.insert(movie)
+    override fun deleteAll() {
+        repo.deleteAll()
     }
 
 }

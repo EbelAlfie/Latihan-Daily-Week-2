@@ -10,10 +10,11 @@ import com.example.cleanarchmovieapp.data.service.ApiService
 import com.example.cleanarchmovieapp.domain.MovieEntity
 import com.example.cleanarchmovieapp.domain.MovieRepository
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MovieRepositoryImplement @Inject constructor(private val retrofitObj: ApiService, private val dbObj: LocalDbModule): MovieRepository {
@@ -31,12 +32,13 @@ class MovieRepositoryImplement @Inject constructor(private val retrofitObj: ApiS
             } catch (e: Exception) {
                 emit(MovieEntity(0,"", 0.0f,"","",""))
             }
-        }.flowOn(Dispatchers.IO)
+        }.flowOn(IO)
     }
 
-    override fun insert(movieEntity: MovieEntity) {
-        val movieModel = MovieModel.convertToMovieModel(movieEntity)
-
+    override fun deleteAll() {
+        CoroutineScope(IO).launch {
+            dbObj.MovieDao().deleteAll()
+        }
     }
 
 }

@@ -19,7 +19,7 @@ data class MovieModel(
 ){
     companion object {
 
-        fun convertToMovieModel(it: MovieEntity): MovieDbModel {
+        fun convertToMovieDbModel(it: MovieEntity): MovieDbModel {
             return MovieDbModel(it.id, it.image, it.rating, it.year, it.name, it.desc)
         }
 
@@ -31,5 +31,15 @@ data class MovieModel(
                 convertToMovieEntity(MovieModel(it?.id, it?.image, it?.rating, it?.year, it?.name, it?.desc))
             }
         }
+
+        private fun convertDbToMovieEntity(it: MovieModel): MovieEntity {
+            return MovieEntity(it.id ?: 0, it.image ?: "", it.rating ?: 0.0f, it.year ?: "", it.name ?: "", it.desc ?: "")
+        }
+        fun convertListToEntity(movie: List<MovieDbModel?>): List<MovieEntity> {
+            return movie.map {
+                convertDbToMovieEntity(MovieModel(it?.id, it?.image, it?.rating, it?.year, it?.name, it?.desc))
+            }
+        }
+
     }
 }

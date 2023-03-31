@@ -1,17 +1,14 @@
 package com.example.cleanarchmovieapp.data.localdb
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.cleanarchmovieapp.data.MovieDbModel
-import com.example.cleanarchmovieapp.data.MovieModel
-import com.example.cleanarchmovieapp.domain.MovieEntity
 
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertMovie(movieModel: MovieDbModel)
+    suspend fun insertMovie(movieModel: MovieDbModel)
     @Query("SELECT * FROM moviedb")
-    fun getPrevList(): List<MovieDbModel>
+    suspend fun getPrevList(): List<MovieDbModel>
+    @Query("DELETE FROM moviedb")
+    suspend fun deleteAll()
 }

@@ -8,5 +8,5 @@ interface MovieUseCase {
     fun getPopularMovie(scope: CoroutineScope, mode: Int): Flow<PagingData<MovieEntity>>
     fun getOneMovie(id: Int): Flow<MovieEntity>
 
-    fun insertMovie(movie: MovieEntity)
+    fun deleteAll()
 }

@@ -11,6 +11,7 @@ object Utils {
     const val API_KEY = "78735294e6c5f10cefe449732a2bfbd8"
     const val DEFAULT_SIZE = 10
     const val ONLINE = 1
+    const val OFFLINE = 0
 
     fun initIntent(context: Context, kelas: Class<*>, item: Int){
         val intent = Intent(context, kelas)
